@@ -6,7 +6,7 @@
 package entidades;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -64,11 +64,11 @@ public class Almacen implements Serializable {
     @Column(name = "cod_dist")
     private String codDist;
     @OneToMany(mappedBy = "idalmacenOrigen")
-    private Collection<Guiaitem> guiaitemCollection;
+    private List<Guiaitem> guiaitemList;
     @OneToMany(mappedBy = "idalmacenDestino")
-    private Collection<Guiaitem> guiaitemCollection1;
+    private List<Guiaitem> guiaitemList1;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "almacen")
-    private Collection<Altipoitem> altipoitemCollection;
+    private List<Altipoitem> altipoitemList;
 
     public Almacen() {
     }
@@ -134,30 +134,30 @@ public class Almacen implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Guiaitem> getGuiaitemCollection() {
-        return guiaitemCollection;
+    public List<Guiaitem> getGuiaitemList() {
+        return guiaitemList;
     }
 
-    public void setGuiaitemCollection(Collection<Guiaitem> guiaitemCollection) {
-        this.guiaitemCollection = guiaitemCollection;
-    }
-
-    @XmlTransient
-    public Collection<Guiaitem> getGuiaitemCollection1() {
-        return guiaitemCollection1;
-    }
-
-    public void setGuiaitemCollection1(Collection<Guiaitem> guiaitemCollection1) {
-        this.guiaitemCollection1 = guiaitemCollection1;
+    public void setGuiaitemList(List<Guiaitem> guiaitemList) {
+        this.guiaitemList = guiaitemList;
     }
 
     @XmlTransient
-    public Collection<Altipoitem> getAltipoitemCollection() {
-        return altipoitemCollection;
+    public List<Guiaitem> getGuiaitemList1() {
+        return guiaitemList1;
     }
 
-    public void setAltipoitemCollection(Collection<Altipoitem> altipoitemCollection) {
-        this.altipoitemCollection = altipoitemCollection;
+    public void setGuiaitemList1(List<Guiaitem> guiaitemList1) {
+        this.guiaitemList1 = guiaitemList1;
+    }
+
+    @XmlTransient
+    public List<Altipoitem> getAltipoitemList() {
+        return altipoitemList;
+    }
+
+    public void setAltipoitemList(List<Altipoitem> altipoitemList) {
+        this.altipoitemList = altipoitemList;
     }
 
     @Override

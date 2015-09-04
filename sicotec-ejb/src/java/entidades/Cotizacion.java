@@ -6,8 +6,8 @@
 package entidades;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -56,9 +56,9 @@ public class Cotizacion implements Serializable {
     @Column(name = "duracion")
     private Integer duracion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cotizacion")
-    private Collection<Cotipoitem> cotipoitemCollection;
+    private List<Cotipoitem> cotipoitemList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idcotizacion")
-    private Collection<Pedido> pedidoCollection;
+    private List<Pedido> pedidoList;
     @JoinColumn(name = "idempresa", referencedColumnName = "idempresa")
     @ManyToOne(optional = false)
     private Empresa idempresa;
@@ -103,21 +103,21 @@ public class Cotizacion implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Cotipoitem> getCotipoitemCollection() {
-        return cotipoitemCollection;
+    public List<Cotipoitem> getCotipoitemList() {
+        return cotipoitemList;
     }
 
-    public void setCotipoitemCollection(Collection<Cotipoitem> cotipoitemCollection) {
-        this.cotipoitemCollection = cotipoitemCollection;
+    public void setCotipoitemList(List<Cotipoitem> cotipoitemList) {
+        this.cotipoitemList = cotipoitemList;
     }
 
     @XmlTransient
-    public Collection<Pedido> getPedidoCollection() {
-        return pedidoCollection;
+    public List<Pedido> getPedidoList() {
+        return pedidoList;
     }
 
-    public void setPedidoCollection(Collection<Pedido> pedidoCollection) {
-        this.pedidoCollection = pedidoCollection;
+    public void setPedidoList(List<Pedido> pedidoList) {
+        this.pedidoList = pedidoList;
     }
 
     public Empresa getIdempresa() {

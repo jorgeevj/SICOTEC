@@ -6,7 +6,7 @@
 package entidades;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -50,7 +50,7 @@ public class Item implements Serializable {
     @Column(name = "operatividad")
     private String operatividad;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "item")
-    private Collection<Guiaitem> guiaitemCollection;
+    private List<Guiaitem> guiaitemList;
     @JoinColumns({
         @JoinColumn(name = "idalmacen", referencedColumnName = "idalmacen"),
         @JoinColumn(name = "idtipoItem", referencedColumnName = "idtipoItem")})
@@ -60,7 +60,7 @@ public class Item implements Serializable {
     @ManyToOne(optional = false)
     private Lote idlote;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "item")
-    private Collection<Vitem> vitemCollection;
+    private List<Vitem> vitemList;
 
     public Item() {
     }
@@ -94,12 +94,12 @@ public class Item implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Guiaitem> getGuiaitemCollection() {
-        return guiaitemCollection;
+    public List<Guiaitem> getGuiaitemList() {
+        return guiaitemList;
     }
 
-    public void setGuiaitemCollection(Collection<Guiaitem> guiaitemCollection) {
-        this.guiaitemCollection = guiaitemCollection;
+    public void setGuiaitemList(List<Guiaitem> guiaitemList) {
+        this.guiaitemList = guiaitemList;
     }
 
     public Altipoitem getAltipoitem() {
@@ -119,12 +119,12 @@ public class Item implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Vitem> getVitemCollection() {
-        return vitemCollection;
+    public List<Vitem> getVitemList() {
+        return vitemList;
     }
 
-    public void setVitemCollection(Collection<Vitem> vitemCollection) {
-        this.vitemCollection = vitemCollection;
+    public void setVitemList(List<Vitem> vitemList) {
+        this.vitemList = vitemList;
     }
 
     @Override

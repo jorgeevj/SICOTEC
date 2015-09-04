@@ -6,7 +6,7 @@
 package entidades;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -73,11 +73,11 @@ public class Empresa implements Serializable {
     @Column(name = "tipo")
     private Integer tipo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idempresa")
-    private Collection<Compra> compraCollection;
+    private List<Compra> compraList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idempresa")
-    private Collection<Venta> ventaCollection;
+    private List<Venta> ventaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idempresa")
-    private Collection<Cotizacion> cotizacionCollection;
+    private List<Cotizacion> cotizacionList;
     @JoinColumn(name = "idpersona", referencedColumnName = "idpersona")
     @ManyToOne(optional = false)
     private Persona idpersona;
@@ -162,30 +162,30 @@ public class Empresa implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Compra> getCompraCollection() {
-        return compraCollection;
+    public List<Compra> getCompraList() {
+        return compraList;
     }
 
-    public void setCompraCollection(Collection<Compra> compraCollection) {
-        this.compraCollection = compraCollection;
-    }
-
-    @XmlTransient
-    public Collection<Venta> getVentaCollection() {
-        return ventaCollection;
-    }
-
-    public void setVentaCollection(Collection<Venta> ventaCollection) {
-        this.ventaCollection = ventaCollection;
+    public void setCompraList(List<Compra> compraList) {
+        this.compraList = compraList;
     }
 
     @XmlTransient
-    public Collection<Cotizacion> getCotizacionCollection() {
-        return cotizacionCollection;
+    public List<Venta> getVentaList() {
+        return ventaList;
     }
 
-    public void setCotizacionCollection(Collection<Cotizacion> cotizacionCollection) {
-        this.cotizacionCollection = cotizacionCollection;
+    public void setVentaList(List<Venta> ventaList) {
+        this.ventaList = ventaList;
+    }
+
+    @XmlTransient
+    public List<Cotizacion> getCotizacionList() {
+        return cotizacionList;
+    }
+
+    public void setCotizacionList(List<Cotizacion> cotizacionList) {
+        this.cotizacionList = cotizacionList;
     }
 
     public Persona getIdpersona() {

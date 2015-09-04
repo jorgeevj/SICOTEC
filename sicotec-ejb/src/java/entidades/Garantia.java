@@ -6,8 +6,8 @@
 package entidades;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -59,9 +59,9 @@ public class Garantia implements Serializable {
     @ManyToOne(optional = false)
     private Vitem vitem;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idgarantia")
-    private Collection<Informe> informeCollection;
+    private List<Informe> informeList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idgarantia")
-    private Collection<Notacredito> notacreditoCollection;
+    private List<Notacredito> notacreditoList;
 
     public Garantia() {
     }
@@ -103,21 +103,21 @@ public class Garantia implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Informe> getInformeCollection() {
-        return informeCollection;
+    public List<Informe> getInformeList() {
+        return informeList;
     }
 
-    public void setInformeCollection(Collection<Informe> informeCollection) {
-        this.informeCollection = informeCollection;
+    public void setInformeList(List<Informe> informeList) {
+        this.informeList = informeList;
     }
 
     @XmlTransient
-    public Collection<Notacredito> getNotacreditoCollection() {
-        return notacreditoCollection;
+    public List<Notacredito> getNotacreditoList() {
+        return notacreditoList;
     }
 
-    public void setNotacreditoCollection(Collection<Notacredito> notacreditoCollection) {
-        this.notacreditoCollection = notacreditoCollection;
+    public void setNotacreditoList(List<Notacredito> notacreditoList) {
+        this.notacreditoList = notacreditoList;
     }
 
     @Override

@@ -6,8 +6,8 @@
 package entidades;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -55,9 +55,9 @@ public class Compra implements Serializable {
     @ManyToOne(optional = false)
     private Empresa idempresa;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idcompra")
-    private Collection<Lote> loteCollection;
+    private List<Lote> loteList;
     @OneToMany(mappedBy = "idcompra")
-    private Collection<Pedido> pedidoCollection;
+    private List<Pedido> pedidoList;
 
     public Compra() {
     }
@@ -99,21 +99,21 @@ public class Compra implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Lote> getLoteCollection() {
-        return loteCollection;
+    public List<Lote> getLoteList() {
+        return loteList;
     }
 
-    public void setLoteCollection(Collection<Lote> loteCollection) {
-        this.loteCollection = loteCollection;
+    public void setLoteList(List<Lote> loteList) {
+        this.loteList = loteList;
     }
 
     @XmlTransient
-    public Collection<Pedido> getPedidoCollection() {
-        return pedidoCollection;
+    public List<Pedido> getPedidoList() {
+        return pedidoList;
     }
 
-    public void setPedidoCollection(Collection<Pedido> pedidoCollection) {
-        this.pedidoCollection = pedidoCollection;
+    public void setPedidoList(List<Pedido> pedidoList) {
+        this.pedidoList = pedidoList;
     }
 
     @Override

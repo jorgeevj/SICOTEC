@@ -6,7 +6,7 @@
 package entidades;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -49,7 +49,7 @@ public class Guia implements Serializable {
     @Column(name = "estado")
     private String estado;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "guia")
-    private Collection<Guiaitem> guiaitemCollection;
+    private List<Guiaitem> guiaitemList;
     @JoinColumn(name = "idventa", referencedColumnName = "idventa")
     @ManyToOne
     private Venta idventa;
@@ -86,12 +86,12 @@ public class Guia implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Guiaitem> getGuiaitemCollection() {
-        return guiaitemCollection;
+    public List<Guiaitem> getGuiaitemList() {
+        return guiaitemList;
     }
 
-    public void setGuiaitemCollection(Collection<Guiaitem> guiaitemCollection) {
-        this.guiaitemCollection = guiaitemCollection;
+    public void setGuiaitemList(List<Guiaitem> guiaitemList) {
+        this.guiaitemList = guiaitemList;
     }
 
     public Venta getIdventa() {

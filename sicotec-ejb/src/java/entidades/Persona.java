@@ -6,7 +6,7 @@
 package entidades;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -67,9 +67,9 @@ public class Persona implements Serializable {
     @Column(name = "cod_dist")
     private String codDist;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idpersona")
-    private Collection<Usuario> usuarioCollection;
+    private List<Usuario> usuarioList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idpersona")
-    private Collection<Empresa> empresaCollection;
+    private List<Empresa> empresaList;
 
     public Persona() {
     }
@@ -143,21 +143,21 @@ public class Persona implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Usuario> getUsuarioCollection() {
-        return usuarioCollection;
+    public List<Usuario> getUsuarioList() {
+        return usuarioList;
     }
 
-    public void setUsuarioCollection(Collection<Usuario> usuarioCollection) {
-        this.usuarioCollection = usuarioCollection;
+    public void setUsuarioList(List<Usuario> usuarioList) {
+        this.usuarioList = usuarioList;
     }
 
     @XmlTransient
-    public Collection<Empresa> getEmpresaCollection() {
-        return empresaCollection;
+    public List<Empresa> getEmpresaList() {
+        return empresaList;
     }
 
-    public void setEmpresaCollection(Collection<Empresa> empresaCollection) {
-        this.empresaCollection = empresaCollection;
+    public void setEmpresaList(List<Empresa> empresaList) {
+        this.empresaList = empresaList;
     }
 
     @Override

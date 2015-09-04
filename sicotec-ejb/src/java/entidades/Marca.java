@@ -6,7 +6,7 @@
 package entidades;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -56,7 +56,7 @@ public class Marca implements Serializable {
         @JoinColumn(name = "idmarca", referencedColumnName = "idmarca")}, inverseJoinColumns = {
         @JoinColumn(name = "idtipoItem", referencedColumnName = "idtipoItem")})
     @ManyToMany
-    private Collection<Tipoitem> tipoitemCollection;
+    private List<Tipoitem> tipoitemList;
 
     public Marca() {
     }
@@ -98,12 +98,12 @@ public class Marca implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Tipoitem> getTipoitemCollection() {
-        return tipoitemCollection;
+    public List<Tipoitem> getTipoitemList() {
+        return tipoitemList;
     }
 
-    public void setTipoitemCollection(Collection<Tipoitem> tipoitemCollection) {
-        this.tipoitemCollection = tipoitemCollection;
+    public void setTipoitemList(List<Tipoitem> tipoitemList) {
+        this.tipoitemList = tipoitemList;
     }
 
     @Override

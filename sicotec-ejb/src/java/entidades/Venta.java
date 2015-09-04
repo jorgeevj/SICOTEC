@@ -6,8 +6,8 @@
 package entidades;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -60,8 +60,8 @@ public class Venta implements Serializable {
     @Size(max = 45)
     @Column(name = "estado")
     private String estado;
-    @ManyToMany(mappedBy = "ventaCollection")
-    private Collection<Mediopago> mediopagoCollection;
+    @ManyToMany(mappedBy = "ventaList")
+    private List<Mediopago> mediopagoList;
     @JoinColumn(name = "idempresa", referencedColumnName = "idempresa")
     @ManyToOne(optional = false)
     private Empresa idempresa;
@@ -69,9 +69,9 @@ public class Venta implements Serializable {
     @ManyToOne(optional = false)
     private Impuesto idimpuesto;
     @OneToMany(mappedBy = "idventa")
-    private Collection<Guia> guiaCollection;
+    private List<Guia> guiaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "venta")
-    private Collection<Vitem> vitemCollection;
+    private List<Vitem> vitemList;
 
     public Venta() {
     }
@@ -121,12 +121,12 @@ public class Venta implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Mediopago> getMediopagoCollection() {
-        return mediopagoCollection;
+    public List<Mediopago> getMediopagoList() {
+        return mediopagoList;
     }
 
-    public void setMediopagoCollection(Collection<Mediopago> mediopagoCollection) {
-        this.mediopagoCollection = mediopagoCollection;
+    public void setMediopagoList(List<Mediopago> mediopagoList) {
+        this.mediopagoList = mediopagoList;
     }
 
     public Empresa getIdempresa() {
@@ -146,21 +146,21 @@ public class Venta implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Guia> getGuiaCollection() {
-        return guiaCollection;
+    public List<Guia> getGuiaList() {
+        return guiaList;
     }
 
-    public void setGuiaCollection(Collection<Guia> guiaCollection) {
-        this.guiaCollection = guiaCollection;
+    public void setGuiaList(List<Guia> guiaList) {
+        this.guiaList = guiaList;
     }
 
     @XmlTransient
-    public Collection<Vitem> getVitemCollection() {
-        return vitemCollection;
+    public List<Vitem> getVitemList() {
+        return vitemList;
     }
 
-    public void setVitemCollection(Collection<Vitem> vitemCollection) {
-        this.vitemCollection = vitemCollection;
+    public void setVitemList(List<Vitem> vitemList) {
+        this.vitemList = vitemList;
     }
 
     @Override
