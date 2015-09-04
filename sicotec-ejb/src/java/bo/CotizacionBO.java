@@ -5,6 +5,7 @@
  */
 package bo;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 
@@ -15,6 +16,10 @@ import javax.ejb.LocalBean;
 @Stateless
 @LocalBean
 public class CotizacionBO {
+
+    public List getAllCotizaciones() {
+        return null;
+    }
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
