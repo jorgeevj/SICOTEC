@@ -12,6 +12,7 @@ import javax.ejb.LocalBean;
 /**
  *
  * @author Jorge
+ * 15.09.2015
  */
 @Stateless
 @LocalBean
