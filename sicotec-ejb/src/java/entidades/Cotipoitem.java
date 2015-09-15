@@ -28,7 +28,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Cotipoitem.findByPrecio", query = "SELECT c FROM Cotipoitem c WHERE c.precio = :precio"),
     @NamedQuery(name = "Cotipoitem.findByCantidad", query = "SELECT c FROM Cotipoitem c WHERE c.cantidad = :cantidad"),
     @NamedQuery(name = "Cotipoitem.findByIdcotizacion", query = "SELECT c FROM Cotipoitem c WHERE c.cotipoitemPK.idcotizacion = :idcotizacion"),
-    @NamedQuery(name = "Cotipoitem.findByIdtipoItem", query = "SELECT c FROM Cotipoitem c WHERE c.cotipoitemPK.idtipoItem = :idtipoItem")})
+    @NamedQuery(name = "Cotipoitem.findByIdtipoItem", query = "SELECT c FROM Cotipoitem c WHERE c.cotipoitemPK.idtipoItem = :idtipoItem"),
+    @NamedQuery(name = "Cotipoitem.findByDescuento", query = "SELECT c FROM Cotipoitem c WHERE c.descuento = :descuento")})
 public class Cotipoitem implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
@@ -38,6 +39,8 @@ public class Cotipoitem implements Serializable {
     private Double precio;
     @Column(name = "cantidad")
     private Integer cantidad;
+    @Column(name = "descuento")
+    private Double descuento;
     @JoinColumn(name = "idcotizacion", referencedColumnName = "idcotizacion", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Cotizacion cotizacion;
@@ -78,6 +81,14 @@ public class Cotipoitem implements Serializable {
 
     public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public Double getDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(Double descuento) {
+        this.descuento = descuento;
     }
 
     public Cotizacion getCotizacion() {

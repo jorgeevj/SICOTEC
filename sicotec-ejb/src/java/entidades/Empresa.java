@@ -75,6 +75,8 @@ public class Empresa implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idempresa")
     private List<Compra> compraList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idempresa")
+    private List<Pedido> pedidoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idempresa")
     private List<Venta> ventaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idempresa")
     private List<Cotizacion> cotizacionList;
@@ -168,6 +170,15 @@ public class Empresa implements Serializable {
 
     public void setCompraList(List<Compra> compraList) {
         this.compraList = compraList;
+    }
+
+    @XmlTransient
+    public List<Pedido> getPedidoList() {
+        return pedidoList;
+    }
+
+    public void setPedidoList(List<Pedido> pedidoList) {
+        this.pedidoList = pedidoList;
     }
 
     @XmlTransient

@@ -57,8 +57,6 @@ public class Cotizacion implements Serializable {
     private Integer duracion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cotizacion")
     private List<Cotipoitem> cotipoitemList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idcotizacion")
-    private List<Pedido> pedidoList;
     @JoinColumn(name = "idempresa", referencedColumnName = "idempresa")
     @ManyToOne(optional = false)
     private Empresa idempresa;
@@ -109,15 +107,6 @@ public class Cotizacion implements Serializable {
 
     public void setCotipoitemList(List<Cotipoitem> cotipoitemList) {
         this.cotipoitemList = cotipoitemList;
-    }
-
-    @XmlTransient
-    public List<Pedido> getPedidoList() {
-        return pedidoList;
-    }
-
-    public void setPedidoList(List<Pedido> pedidoList) {
-        this.pedidoList = pedidoList;
     }
 
     public Empresa getIdempresa() {

@@ -14,7 +14,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -49,17 +48,9 @@ public class Pedido implements Serializable {
     @Size(max = 45)
     @Column(name = "cantidad")
     private String cantidad;
-    @JoinColumns({
-        @JoinColumn(name = "idalmacen", referencedColumnName = "idalmacen"),
-        @JoinColumn(name = "idtipoItem", referencedColumnName = "idtipoItem")})
+    @JoinColumn(name = "idempresa", referencedColumnName = "idempresa")
     @ManyToOne(optional = false)
-    private Altipoitem altipoitem;
-    @JoinColumn(name = "idcompra", referencedColumnName = "idcompra")
-    @ManyToOne
-    private Compra idcompra;
-    @JoinColumn(name = "idcotizacion", referencedColumnName = "idcotizacion")
-    @ManyToOne(optional = false)
-    private Cotizacion idcotizacion;
+    private Empresa idempresa;
 
     public Pedido() {
     }
@@ -92,28 +83,12 @@ public class Pedido implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public Altipoitem getAltipoitem() {
-        return altipoitem;
+    public Empresa getIdempresa() {
+        return idempresa;
     }
 
-    public void setAltipoitem(Altipoitem altipoitem) {
-        this.altipoitem = altipoitem;
-    }
-
-    public Compra getIdcompra() {
-        return idcompra;
-    }
-
-    public void setIdcompra(Compra idcompra) {
-        this.idcompra = idcompra;
-    }
-
-    public Cotizacion getIdcotizacion() {
-        return idcotizacion;
-    }
-
-    public void setIdcotizacion(Cotizacion idcotizacion) {
-        this.idcotizacion = idcotizacion;
+    public void setIdempresa(Empresa idempresa) {
+        this.idempresa = idempresa;
     }
 
     @Override

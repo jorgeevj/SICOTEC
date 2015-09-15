@@ -17,7 +17,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -30,21 +29,18 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Altipoitem.findAll", query = "SELECT a FROM Altipoitem a"),
-    @NamedQuery(name = "Altipoitem.findByCantidad", query = "SELECT a FROM Altipoitem a WHERE a.cantidad = :cantidad"),
-    @NamedQuery(name = "Altipoitem.findByEstado", query = "SELECT a FROM Altipoitem a WHERE a.estado = :estado"),
     @NamedQuery(name = "Altipoitem.findByIdalmacen", query = "SELECT a FROM Altipoitem a WHERE a.altipoitemPK.idalmacen = :idalmacen"),
-    @NamedQuery(name = "Altipoitem.findByIdtipoItem", query = "SELECT a FROM Altipoitem a WHERE a.altipoitemPK.idtipoItem = :idtipoItem")})
+    @NamedQuery(name = "Altipoitem.findByIdtipoItem", query = "SELECT a FROM Altipoitem a WHERE a.altipoitemPK.idtipoItem = :idtipoItem"),
+    @NamedQuery(name = "Altipoitem.findByCantidad", query = "SELECT a FROM Altipoitem a WHERE a.cantidad = :cantidad"),
+    @NamedQuery(name = "Altipoitem.findByEstado", query = "SELECT a FROM Altipoitem a WHERE a.estado = :estado")})
 public class Altipoitem implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected AltipoitemPK altipoitemPK;
     @Column(name = "cantidad")
     private Integer cantidad;
-    @Size(max = 45)
     @Column(name = "estado")
-    private String estado;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "altipoitem")
-    private List<Pedido> pedidoList;
+    private Integer estado;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "altipoitem")
     private List<Item> itemList;
     @JoinColumn(name = "idalmacen", referencedColumnName = "idalmacen", insertable = false, updatable = false)
@@ -81,21 +77,12 @@ public class Altipoitem implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public String getEstado() {
+    public Integer getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Integer estado) {
         this.estado = estado;
-    }
-
-    @XmlTransient
-    public List<Pedido> getPedidoList() {
-        return pedidoList;
-    }
-
-    public void setPedidoList(List<Pedido> pedidoList) {
-        this.pedidoList = pedidoList;
     }
 
     @XmlTransient

@@ -34,7 +34,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Tipoitem.findByIdtipoItem", query = "SELECT t FROM Tipoitem t WHERE t.idtipoItem = :idtipoItem"),
     @NamedQuery(name = "Tipoitem.findByNombre", query = "SELECT t FROM Tipoitem t WHERE t.nombre = :nombre"),
     @NamedQuery(name = "Tipoitem.findByTipo", query = "SELECT t FROM Tipoitem t WHERE t.tipo = :tipo"),
-    @NamedQuery(name = "Tipoitem.findByPrecioLista", query = "SELECT t FROM Tipoitem t WHERE t.precioLista = :precioLista")})
+    @NamedQuery(name = "Tipoitem.findByPrecioLista", query = "SELECT t FROM Tipoitem t WHERE t.precioLista = :precioLista"),
+    @NamedQuery(name = "Tipoitem.findByDescliente", query = "SELECT t FROM Tipoitem t WHERE t.descliente = :descliente"),
+    @NamedQuery(name = "Tipoitem.findByDesDistribuidor", query = "SELECT t FROM Tipoitem t WHERE t.desDistribuidor = :desDistribuidor")})
 public class Tipoitem implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -51,6 +53,12 @@ public class Tipoitem implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "precioLista")
     private Double precioLista;
+    @Size(max = 45)
+    @Column(name = "descliente")
+    private String descliente;
+    @Size(max = 45)
+    @Column(name = "desDistribuidor")
+    private String desDistribuidor;
     @ManyToMany(mappedBy = "tipoitemList")
     private List<Familia> familiaList;
     @ManyToMany(mappedBy = "tipoitemList")
@@ -99,6 +107,22 @@ public class Tipoitem implements Serializable {
 
     public void setPrecioLista(Double precioLista) {
         this.precioLista = precioLista;
+    }
+
+    public String getDescliente() {
+        return descliente;
+    }
+
+    public void setDescliente(String descliente) {
+        this.descliente = descliente;
+    }
+
+    public String getDesDistribuidor() {
+        return desDistribuidor;
+    }
+
+    public void setDesDistribuidor(String desDistribuidor) {
+        this.desDistribuidor = desDistribuidor;
     }
 
     @XmlTransient
