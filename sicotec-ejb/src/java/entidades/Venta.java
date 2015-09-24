@@ -41,7 +41,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Venta.findByFecha", query = "SELECT v FROM Venta v WHERE v.fecha = :fecha"),
     @NamedQuery(name = "Venta.findByDescuento", query = "SELECT v FROM Venta v WHERE v.descuento = :descuento"),
     @NamedQuery(name = "Venta.findByTotal", query = "SELECT v FROM Venta v WHERE v.total = :total"),
-    @NamedQuery(name = "Venta.findByEstado", query = "SELECT v FROM Venta v WHERE v.estado = :estado")})
+    @NamedQuery(name = "Venta.findByEstado", query = "SELECT v FROM Venta v WHERE v.estado = :estado"),
+    @NamedQuery(name = "Venta.findByIddocumento", query = "SELECT v FROM Venta v WHERE v.iddocumento = :iddocumento")})
 public class Venta implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -60,6 +61,9 @@ public class Venta implements Serializable {
     @Size(max = 45)
     @Column(name = "estado")
     private String estado;
+    @Size(max = 45)
+    @Column(name = "iddocumento")
+    private String iddocumento;
     @ManyToMany(mappedBy = "ventaList")
     private List<Mediopago> mediopagoList;
     @JoinColumn(name = "idempresa", referencedColumnName = "idempresa")
@@ -68,8 +72,6 @@ public class Venta implements Serializable {
     @JoinColumn(name = "idimpuesto", referencedColumnName = "idimpuesto")
     @ManyToOne(optional = false)
     private Impuesto idimpuesto;
-    @OneToMany(mappedBy = "idventa")
-    private List<Guia> guiaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "venta")
     private List<Vitem> vitemList;
 
@@ -120,6 +122,14 @@ public class Venta implements Serializable {
         this.estado = estado;
     }
 
+    public String getIddocumento() {
+        return iddocumento;
+    }
+
+    public void setIddocumento(String iddocumento) {
+        this.iddocumento = iddocumento;
+    }
+
     @XmlTransient
     public List<Mediopago> getMediopagoList() {
         return mediopagoList;
@@ -143,15 +153,6 @@ public class Venta implements Serializable {
 
     public void setIdimpuesto(Impuesto idimpuesto) {
         this.idimpuesto = idimpuesto;
-    }
-
-    @XmlTransient
-    public List<Guia> getGuiaList() {
-        return guiaList;
-    }
-
-    public void setGuiaList(List<Guia> guiaList) {
-        this.guiaList = guiaList;
     }
 
     @XmlTransient

@@ -12,7 +12,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -35,7 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Tipoitem.findByNombre", query = "SELECT t FROM Tipoitem t WHERE t.nombre = :nombre"),
     @NamedQuery(name = "Tipoitem.findByTipo", query = "SELECT t FROM Tipoitem t WHERE t.tipo = :tipo"),
     @NamedQuery(name = "Tipoitem.findByPrecioLista", query = "SELECT t FROM Tipoitem t WHERE t.precioLista = :precioLista"),
-    @NamedQuery(name = "Tipoitem.findByDescliente", query = "SELECT t FROM Tipoitem t WHERE t.descliente = :descliente"),
+    @NamedQuery(name = "Tipoitem.findByDesCliente", query = "SELECT t FROM Tipoitem t WHERE t.desCliente = :desCliente"),
     @NamedQuery(name = "Tipoitem.findByDesDistribuidor", query = "SELECT t FROM Tipoitem t WHERE t.desDistribuidor = :desDistribuidor")})
 public class Tipoitem implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -54,19 +56,20 @@ public class Tipoitem implements Serializable {
     @Column(name = "precioLista")
     private Double precioLista;
     @Size(max = 45)
-    @Column(name = "descliente")
-    private String descliente;
+    @Column(name = "desCliente")
+    private String desCliente;
     @Size(max = 45)
     @Column(name = "desDistribuidor")
     private String desDistribuidor;
-    @ManyToMany(mappedBy = "tipoitemList")
-    private List<Familia> familiaList;
     @ManyToMany(mappedBy = "tipoitemList")
     private List<Marca> marcaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoitem")
     private List<Cotipoitem> cotipoitemList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoitem")
     private List<Catipoitem> catipoitemList;
+    @JoinColumn(name = "idfamilia", referencedColumnName = "idfamilia")
+    @ManyToOne(optional = false)
+    private Familia idfamilia;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoitem")
     private List<Altipoitem> altipoitemList;
 
@@ -109,12 +112,12 @@ public class Tipoitem implements Serializable {
         this.precioLista = precioLista;
     }
 
-    public String getDescliente() {
-        return descliente;
+    public String getDesCliente() {
+        return desCliente;
     }
 
-    public void setDescliente(String descliente) {
-        this.descliente = descliente;
+    public void setDesCliente(String desCliente) {
+        this.desCliente = desCliente;
     }
 
     public String getDesDistribuidor() {
@@ -123,15 +126,6 @@ public class Tipoitem implements Serializable {
 
     public void setDesDistribuidor(String desDistribuidor) {
         this.desDistribuidor = desDistribuidor;
-    }
-
-    @XmlTransient
-    public List<Familia> getFamiliaList() {
-        return familiaList;
-    }
-
-    public void setFamiliaList(List<Familia> familiaList) {
-        this.familiaList = familiaList;
     }
 
     @XmlTransient
@@ -159,6 +153,14 @@ public class Tipoitem implements Serializable {
 
     public void setCatipoitemList(List<Catipoitem> catipoitemList) {
         this.catipoitemList = catipoitemList;
+    }
+
+    public Familia getIdfamilia() {
+        return idfamilia;
+    }
+
+    public void setIdfamilia(Familia idfamilia) {
+        this.idfamilia = idfamilia;
     }
 
     @XmlTransient

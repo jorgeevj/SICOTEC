@@ -11,14 +11,16 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -33,19 +35,24 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Lote.findAll", query = "SELECT l FROM Lote l"),
     @NamedQuery(name = "Lote.findByIdlote", query = "SELECT l FROM Lote l WHERE l.idlote = :idlote"),
     @NamedQuery(name = "Lote.findByCantidad", query = "SELECT l FROM Lote l WHERE l.cantidad = :cantidad"),
-    @NamedQuery(name = "Lote.findByPrecio", query = "SELECT l FROM Lote l WHERE l.precio = :precio")})
+    @NamedQuery(name = "Lote.findByPrecioUni", query = "SELECT l FROM Lote l WHERE l.precioUni = :precioUni")})
 public class Lote implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "idlote")
     private Integer idlote;
     @Column(name = "cantidad")
     private Integer cantidad;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "precio")
-    private Double precio;
+    @Column(name = "precioUni")
+    private Double precioUni;
+    @JoinColumns({
+        @JoinColumn(name = "idalmacen", referencedColumnName = "idalmacen"),
+        @JoinColumn(name = "idtipoItem", referencedColumnName = "idtipoItem")})
+    @ManyToOne(optional = false)
+    private Altipoitem altipoitem;
     @JoinColumn(name = "idcompra", referencedColumnName = "idcompra")
     @ManyToOne(optional = false)
     private Compra idcompra;
@@ -75,12 +82,20 @@ public class Lote implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public Double getPrecio() {
-        return precio;
+    public Double getPrecioUni() {
+        return precioUni;
     }
 
-    public void setPrecio(Double precio) {
-        this.precio = precio;
+    public void setPrecioUni(Double precioUni) {
+        this.precioUni = precioUni;
+    }
+
+    public Altipoitem getAltipoitem() {
+        return altipoitem;
+    }
+
+    public void setAltipoitem(Altipoitem altipoitem) {
+        this.altipoitem = altipoitem;
     }
 
     public Compra getIdcompra() {

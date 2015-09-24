@@ -13,7 +13,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -51,14 +50,11 @@ public class Item implements Serializable {
     private String operatividad;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "item")
     private List<Guiaitem> guiaitemList;
-    @JoinColumns({
-        @JoinColumn(name = "idalmacen", referencedColumnName = "idalmacen"),
-        @JoinColumn(name = "idtipoItem", referencedColumnName = "idtipoItem")})
-    @ManyToOne(optional = false)
-    private Altipoitem altipoitem;
     @JoinColumn(name = "idlote", referencedColumnName = "idlote")
     @ManyToOne(optional = false)
     private Lote idlote;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "iditem")
+    private List<Ajuste> ajusteList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "item")
     private List<Vitem> vitemList;
 
@@ -102,20 +98,21 @@ public class Item implements Serializable {
         this.guiaitemList = guiaitemList;
     }
 
-    public Altipoitem getAltipoitem() {
-        return altipoitem;
-    }
-
-    public void setAltipoitem(Altipoitem altipoitem) {
-        this.altipoitem = altipoitem;
-    }
-
     public Lote getIdlote() {
         return idlote;
     }
 
     public void setIdlote(Lote idlote) {
         this.idlote = idlote;
+    }
+
+    @XmlTransient
+    public List<Ajuste> getAjusteList() {
+        return ajusteList;
+    }
+
+    public void setAjusteList(List<Ajuste> ajusteList) {
+        this.ajusteList = ajusteList;
     }
 
     @XmlTransient

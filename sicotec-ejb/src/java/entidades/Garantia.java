@@ -54,8 +54,8 @@ public class Garantia implements Serializable {
     @Column(name = "estado")
     private String estado;
     @JoinColumns({
-        @JoinColumn(name = "idventa", referencedColumnName = "idventa"),
-        @JoinColumn(name = "iditem", referencedColumnName = "iditem")})
+        @JoinColumn(name = "iditem", referencedColumnName = "iditem"),
+        @JoinColumn(name = "idventa", referencedColumnName = "idventa")})
     @ManyToOne(optional = false)
     private Vitem vitem;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idgarantia")

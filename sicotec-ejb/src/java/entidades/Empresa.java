@@ -15,7 +15,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -35,12 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Empresa.findAll", query = "SELECT e FROM Empresa e"),
     @NamedQuery(name = "Empresa.findByIdempresa", query = "SELECT e FROM Empresa e WHERE e.idempresa = :idempresa"),
     @NamedQuery(name = "Empresa.findByNombre", query = "SELECT e FROM Empresa e WHERE e.nombre = :nombre"),
-    @NamedQuery(name = "Empresa.findByTelefono", query = "SELECT e FROM Empresa e WHERE e.telefono = :telefono"),
-    @NamedQuery(name = "Empresa.findByDireccion", query = "SELECT e FROM Empresa e WHERE e.direccion = :direccion"),
     @NamedQuery(name = "Empresa.findByRuc", query = "SELECT e FROM Empresa e WHERE e.ruc = :ruc"),
-    @NamedQuery(name = "Empresa.findByCodDept", query = "SELECT e FROM Empresa e WHERE e.codDept = :codDept"),
-    @NamedQuery(name = "Empresa.findByCodProv", query = "SELECT e FROM Empresa e WHERE e.codProv = :codProv"),
-    @NamedQuery(name = "Empresa.findByCodDist", query = "SELECT e FROM Empresa e WHERE e.codDist = :codDist"),
     @NamedQuery(name = "Empresa.findByTipo", query = "SELECT e FROM Empresa e WHERE e.tipo = :tipo")})
 public class Empresa implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -53,36 +49,25 @@ public class Empresa implements Serializable {
     @Column(name = "nombre")
     private String nombre;
     @Size(max = 45)
-    @Column(name = "telefono")
-    private String telefono;
-    @Size(max = 45)
-    @Column(name = "direccion")
-    private String direccion;
-    @Size(max = 45)
     @Column(name = "ruc")
     private String ruc;
-    @Size(max = 45)
-    @Column(name = "cod_dept")
-    private String codDept;
-    @Size(max = 45)
-    @Column(name = "cod_prov")
-    private String codProv;
-    @Size(max = 45)
-    @Column(name = "cod_dist")
-    private String codDist;
     @Column(name = "tipo")
     private Integer tipo;
+    @JoinTable(name = "tipoempresa", joinColumns = {
+        @JoinColumn(name = "idempresa", referencedColumnName = "idempresa")}, inverseJoinColumns = {
+        @JoinColumn(name = "idtipo", referencedColumnName = "idtipo")})
+    @ManyToMany
+    private List<Tipo> tipoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idempresa")
     private List<Compra> compraList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "empresa")
+    private List<Emppersona> emppersonaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idempresa")
     private List<Pedido> pedidoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idempresa")
     private List<Venta> ventaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idempresa")
     private List<Cotizacion> cotizacionList;
-    @JoinColumn(name = "idpersona", referencedColumnName = "idpersona")
-    @ManyToOne(optional = false)
-    private Persona idpersona;
 
     public Empresa() {
     }
@@ -107,52 +92,12 @@ public class Empresa implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
     public String getRuc() {
         return ruc;
     }
 
     public void setRuc(String ruc) {
         this.ruc = ruc;
-    }
-
-    public String getCodDept() {
-        return codDept;
-    }
-
-    public void setCodDept(String codDept) {
-        this.codDept = codDept;
-    }
-
-    public String getCodProv() {
-        return codProv;
-    }
-
-    public void setCodProv(String codProv) {
-        this.codProv = codProv;
-    }
-
-    public String getCodDist() {
-        return codDist;
-    }
-
-    public void setCodDist(String codDist) {
-        this.codDist = codDist;
     }
 
     public Integer getTipo() {
@@ -164,12 +109,30 @@ public class Empresa implements Serializable {
     }
 
     @XmlTransient
+    public List<Tipo> getTipoList() {
+        return tipoList;
+    }
+
+    public void setTipoList(List<Tipo> tipoList) {
+        this.tipoList = tipoList;
+    }
+
+    @XmlTransient
     public List<Compra> getCompraList() {
         return compraList;
     }
 
     public void setCompraList(List<Compra> compraList) {
         this.compraList = compraList;
+    }
+
+    @XmlTransient
+    public List<Emppersona> getEmppersonaList() {
+        return emppersonaList;
+    }
+
+    public void setEmppersonaList(List<Emppersona> emppersonaList) {
+        this.emppersonaList = emppersonaList;
     }
 
     @XmlTransient
@@ -197,14 +160,6 @@ public class Empresa implements Serializable {
 
     public void setCotizacionList(List<Cotizacion> cotizacionList) {
         this.cotizacionList = cotizacionList;
-    }
-
-    public Persona getIdpersona() {
-        return idpersona;
-    }
-
-    public void setIdpersona(Persona idpersona) {
-        this.idpersona = idpersona;
     }
 
     @Override

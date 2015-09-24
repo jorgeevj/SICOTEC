@@ -63,10 +63,8 @@ public class Almacen implements Serializable {
     @Size(max = 45)
     @Column(name = "cod_dist")
     private String codDist;
-    @OneToMany(mappedBy = "idalmacenOrigen")
-    private List<Guiaitem> guiaitemList;
-    @OneToMany(mappedBy = "idalmacenDestino")
-    private List<Guiaitem> guiaitemList1;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idalmacen")
+    private List<Documento> documentoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "almacen")
     private List<Altipoitem> altipoitemList;
 
@@ -134,21 +132,12 @@ public class Almacen implements Serializable {
     }
 
     @XmlTransient
-    public List<Guiaitem> getGuiaitemList() {
-        return guiaitemList;
+    public List<Documento> getDocumentoList() {
+        return documentoList;
     }
 
-    public void setGuiaitemList(List<Guiaitem> guiaitemList) {
-        this.guiaitemList = guiaitemList;
-    }
-
-    @XmlTransient
-    public List<Guiaitem> getGuiaitemList1() {
-        return guiaitemList1;
-    }
-
-    public void setGuiaitemList1(List<Guiaitem> guiaitemList1) {
-        this.guiaitemList1 = guiaitemList1;
+    public void setDocumentoList(List<Documento> documentoList) {
+        this.documentoList = documentoList;
     }
 
     @XmlTransient

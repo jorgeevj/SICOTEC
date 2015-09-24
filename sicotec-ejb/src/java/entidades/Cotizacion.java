@@ -39,7 +39,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Cotizacion.findByIdcotizacion", query = "SELECT c FROM Cotizacion c WHERE c.idcotizacion = :idcotizacion"),
     @NamedQuery(name = "Cotizacion.findByEstado", query = "SELECT c FROM Cotizacion c WHERE c.estado = :estado"),
     @NamedQuery(name = "Cotizacion.findByFechaEnvio", query = "SELECT c FROM Cotizacion c WHERE c.fechaEnvio = :fechaEnvio"),
-    @NamedQuery(name = "Cotizacion.findByDuracion", query = "SELECT c FROM Cotizacion c WHERE c.duracion = :duracion")})
+    @NamedQuery(name = "Cotizacion.findByDuracion", query = "SELECT c FROM Cotizacion c WHERE c.duracion = :duracion"),
+    @NamedQuery(name = "Cotizacion.findByEntrega", query = "SELECT c FROM Cotizacion c WHERE c.entrega = :entrega")})
 public class Cotizacion implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -55,6 +56,8 @@ public class Cotizacion implements Serializable {
     private Date fechaEnvio;
     @Column(name = "duracion")
     private Integer duracion;
+    @Column(name = "entrega")
+    private Integer entrega;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cotizacion")
     private List<Cotipoitem> cotipoitemList;
     @JoinColumn(name = "idempresa", referencedColumnName = "idempresa")
@@ -98,6 +101,14 @@ public class Cotizacion implements Serializable {
 
     public void setDuracion(Integer duracion) {
         this.duracion = duracion;
+    }
+
+    public Integer getEntrega() {
+        return entrega;
+    }
+
+    public void setEntrega(Integer entrega) {
+        this.entrega = entrega;
     }
 
     @XmlTransient

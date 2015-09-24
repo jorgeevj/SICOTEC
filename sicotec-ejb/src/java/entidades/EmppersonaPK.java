@@ -16,59 +16,59 @@ import javax.validation.constraints.NotNull;
  * @author Jorge
  */
 @Embeddable
-public class GuiaitemPK implements Serializable {
+public class EmppersonaPK implements Serializable {
     @Basic(optional = false)
     @NotNull
-    @Column(name = "idguia")
-    private int idguia;
+    @Column(name = "idempresa")
+    private int idempresa;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "iditem")
-    private int iditem;
+    @Column(name = "idpersona")
+    private int idpersona;
 
-    public GuiaitemPK() {
+    public EmppersonaPK() {
     }
 
-    public GuiaitemPK(int idguia, int iditem) {
-        this.idguia = idguia;
-        this.iditem = iditem;
+    public EmppersonaPK(int idempresa, int idpersona) {
+        this.idempresa = idempresa;
+        this.idpersona = idpersona;
     }
 
-    public int getIdguia() {
-        return idguia;
+    public int getIdempresa() {
+        return idempresa;
     }
 
-    public void setIdguia(int idguia) {
-        this.idguia = idguia;
+    public void setIdempresa(int idempresa) {
+        this.idempresa = idempresa;
     }
 
-    public int getIditem() {
-        return iditem;
+    public int getIdpersona() {
+        return idpersona;
     }
 
-    public void setIditem(int iditem) {
-        this.iditem = iditem;
+    public void setIdpersona(int idpersona) {
+        this.idpersona = idpersona;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) idguia;
-        hash += (int) iditem;
+        hash += (int) idempresa;
+        hash += (int) idpersona;
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof GuiaitemPK)) {
+        if (!(object instanceof EmppersonaPK)) {
             return false;
         }
-        GuiaitemPK other = (GuiaitemPK) object;
-        if (this.idguia != other.idguia) {
+        EmppersonaPK other = (EmppersonaPK) object;
+        if (this.idempresa != other.idempresa) {
             return false;
         }
-        if (this.iditem != other.iditem) {
+        if (this.idpersona != other.idpersona) {
             return false;
         }
         return true;
@@ -76,7 +76,7 @@ public class GuiaitemPK implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.GuiaitemPK[ idguia=" + idguia + ", iditem=" + iditem + " ]";
+        return "entidades.EmppersonaPK[ idempresa=" + idempresa + ", idpersona=" + idpersona + " ]";
     }
     
 }

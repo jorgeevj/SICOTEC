@@ -26,9 +26,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Catipoitem.findAll", query = "SELECT c FROM Catipoitem c"),
-    @NamedQuery(name = "Catipoitem.findByDercripcion", query = "SELECT c FROM Catipoitem c WHERE c.dercripcion = :dercripcion"),
     @NamedQuery(name = "Catipoitem.findByIdcaracteristica", query = "SELECT c FROM Catipoitem c WHERE c.catipoitemPK.idcaracteristica = :idcaracteristica"),
-    @NamedQuery(name = "Catipoitem.findByIdtipoItem", query = "SELECT c FROM Catipoitem c WHERE c.catipoitemPK.idtipoItem = :idtipoItem")})
+    @NamedQuery(name = "Catipoitem.findByIdtipoItem", query = "SELECT c FROM Catipoitem c WHERE c.catipoitemPK.idtipoItem = :idtipoItem"),
+    @NamedQuery(name = "Catipoitem.findByDercripcion", query = "SELECT c FROM Catipoitem c WHERE c.dercripcion = :dercripcion")})
 public class Catipoitem implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId

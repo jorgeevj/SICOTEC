@@ -33,11 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Persona.findByIdpersona", query = "SELECT p FROM Persona p WHERE p.idpersona = :idpersona"),
     @NamedQuery(name = "Persona.findByNombre", query = "SELECT p FROM Persona p WHERE p.nombre = :nombre"),
     @NamedQuery(name = "Persona.findByApellido", query = "SELECT p FROM Persona p WHERE p.apellido = :apellido"),
-    @NamedQuery(name = "Persona.findByDni", query = "SELECT p FROM Persona p WHERE p.dni = :dni"),
-    @NamedQuery(name = "Persona.findByDireccion", query = "SELECT p FROM Persona p WHERE p.direccion = :direccion"),
-    @NamedQuery(name = "Persona.findByCodDept", query = "SELECT p FROM Persona p WHERE p.codDept = :codDept"),
-    @NamedQuery(name = "Persona.findByCodProv", query = "SELECT p FROM Persona p WHERE p.codProv = :codProv"),
-    @NamedQuery(name = "Persona.findByCodDist", query = "SELECT p FROM Persona p WHERE p.codDist = :codDist")})
+    @NamedQuery(name = "Persona.findByDni", query = "SELECT p FROM Persona p WHERE p.dni = :dni")})
 public class Persona implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -54,22 +50,10 @@ public class Persona implements Serializable {
     @Size(max = 45)
     @Column(name = "dni")
     private String dni;
-    @Size(max = 45)
-    @Column(name = "direccion")
-    private String direccion;
-    @Size(max = 45)
-    @Column(name = "cod_dept")
-    private String codDept;
-    @Size(max = 45)
-    @Column(name = "cod_prov")
-    private String codProv;
-    @Size(max = 45)
-    @Column(name = "cod_dist")
-    private String codDist;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
+    private List<Emppersona> emppersonaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idpersona")
     private List<Usuario> usuarioList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idpersona")
-    private List<Empresa> empresaList;
 
     public Persona() {
     }
@@ -110,36 +94,13 @@ public class Persona implements Serializable {
         this.dni = dni;
     }
 
-    public String getDireccion() {
-        return direccion;
+    @XmlTransient
+    public List<Emppersona> getEmppersonaList() {
+        return emppersonaList;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public String getCodDept() {
-        return codDept;
-    }
-
-    public void setCodDept(String codDept) {
-        this.codDept = codDept;
-    }
-
-    public String getCodProv() {
-        return codProv;
-    }
-
-    public void setCodProv(String codProv) {
-        this.codProv = codProv;
-    }
-
-    public String getCodDist() {
-        return codDist;
-    }
-
-    public void setCodDist(String codDist) {
-        this.codDist = codDist;
+    public void setEmppersonaList(List<Emppersona> emppersonaList) {
+        this.emppersonaList = emppersonaList;
     }
 
     @XmlTransient
@@ -149,15 +110,6 @@ public class Persona implements Serializable {
 
     public void setUsuarioList(List<Usuario> usuarioList) {
         this.usuarioList = usuarioList;
-    }
-
-    @XmlTransient
-    public List<Empresa> getEmpresaList() {
-        return empresaList;
-    }
-
-    public void setEmpresaList(List<Empresa> empresaList) {
-        this.empresaList = empresaList;
     }
 
     @Override

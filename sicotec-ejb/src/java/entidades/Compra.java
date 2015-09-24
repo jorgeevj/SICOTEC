@@ -56,6 +56,8 @@ public class Compra implements Serializable {
     private Empresa idempresa;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idcompra")
     private List<Lote> loteList;
+    @OneToMany(mappedBy = "idcompra")
+    private List<Pealtipoitem> pealtipoitemList;
 
     public Compra() {
     }
@@ -103,6 +105,15 @@ public class Compra implements Serializable {
 
     public void setLoteList(List<Lote> loteList) {
         this.loteList = loteList;
+    }
+
+    @XmlTransient
+    public List<Pealtipoitem> getPealtipoitemList() {
+        return pealtipoitemList;
+    }
+
+    public void setPealtipoitemList(List<Pealtipoitem> pealtipoitemList) {
+        this.pealtipoitemList = pealtipoitemList;
     }
 
     @Override

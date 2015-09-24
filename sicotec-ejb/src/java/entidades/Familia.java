@@ -8,17 +8,17 @@ package entidades;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -45,10 +45,7 @@ public class Familia implements Serializable {
     @Size(max = 45)
     @Column(name = "nombre")
     private String nombre;
-    @JoinTable(name = "ftipoitem", joinColumns = {
-        @JoinColumn(name = "idfamilia", referencedColumnName = "idfamilia")}, inverseJoinColumns = {
-        @JoinColumn(name = "idtipoItem", referencedColumnName = "idtipoItem")})
-    @ManyToMany
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idfamilia")
     private List<Tipoitem> tipoitemList;
     @JoinColumn(name = "idcategoria", referencedColumnName = "idcategoria")
     @ManyToOne(optional = false)

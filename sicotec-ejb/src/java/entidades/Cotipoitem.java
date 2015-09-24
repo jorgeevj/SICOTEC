@@ -25,10 +25,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Cotipoitem.findAll", query = "SELECT c FROM Cotipoitem c"),
-    @NamedQuery(name = "Cotipoitem.findByPrecio", query = "SELECT c FROM Cotipoitem c WHERE c.precio = :precio"),
-    @NamedQuery(name = "Cotipoitem.findByCantidad", query = "SELECT c FROM Cotipoitem c WHERE c.cantidad = :cantidad"),
     @NamedQuery(name = "Cotipoitem.findByIdcotizacion", query = "SELECT c FROM Cotipoitem c WHERE c.cotipoitemPK.idcotizacion = :idcotizacion"),
     @NamedQuery(name = "Cotipoitem.findByIdtipoItem", query = "SELECT c FROM Cotipoitem c WHERE c.cotipoitemPK.idtipoItem = :idtipoItem"),
+    @NamedQuery(name = "Cotipoitem.findByPrecio", query = "SELECT c FROM Cotipoitem c WHERE c.precio = :precio"),
+    @NamedQuery(name = "Cotipoitem.findByCantidad", query = "SELECT c FROM Cotipoitem c WHERE c.cantidad = :cantidad"),
     @NamedQuery(name = "Cotipoitem.findByDescuento", query = "SELECT c FROM Cotipoitem c WHERE c.descuento = :descuento")})
 public class Cotipoitem implements Serializable {
     private static final long serialVersionUID = 1L;

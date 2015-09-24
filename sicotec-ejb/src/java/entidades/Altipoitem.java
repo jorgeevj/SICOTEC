@@ -32,7 +32,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Altipoitem.findByIdalmacen", query = "SELECT a FROM Altipoitem a WHERE a.altipoitemPK.idalmacen = :idalmacen"),
     @NamedQuery(name = "Altipoitem.findByIdtipoItem", query = "SELECT a FROM Altipoitem a WHERE a.altipoitemPK.idtipoItem = :idtipoItem"),
     @NamedQuery(name = "Altipoitem.findByCantidad", query = "SELECT a FROM Altipoitem a WHERE a.cantidad = :cantidad"),
-    @NamedQuery(name = "Altipoitem.findByEstado", query = "SELECT a FROM Altipoitem a WHERE a.estado = :estado")})
+    @NamedQuery(name = "Altipoitem.findByEstado", query = "SELECT a FROM Altipoitem a WHERE a.estado = :estado"),
+    @NamedQuery(name = "Altipoitem.findByReservado", query = "SELECT a FROM Altipoitem a WHERE a.reservado = :reservado"),
+    @NamedQuery(name = "Altipoitem.findByComprados", query = "SELECT a FROM Altipoitem a WHERE a.comprados = :comprados")})
 public class Altipoitem implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
@@ -41,14 +43,20 @@ public class Altipoitem implements Serializable {
     private Integer cantidad;
     @Column(name = "estado")
     private Integer estado;
+    @Column(name = "reservado")
+    private Integer reservado;
+    @Column(name = "comprados")
+    private Integer comprados;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "altipoitem")
-    private List<Item> itemList;
+    private List<Lote> loteList;
     @JoinColumn(name = "idalmacen", referencedColumnName = "idalmacen", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Almacen almacen;
     @JoinColumn(name = "idtipoItem", referencedColumnName = "idtipoItem", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Tipoitem tipoitem;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "altipoitem")
+    private List<Pealtipoitem> pealtipoitemList;
 
     public Altipoitem() {
     }
@@ -85,13 +93,29 @@ public class Altipoitem implements Serializable {
         this.estado = estado;
     }
 
-    @XmlTransient
-    public List<Item> getItemList() {
-        return itemList;
+    public Integer getReservado() {
+        return reservado;
     }
 
-    public void setItemList(List<Item> itemList) {
-        this.itemList = itemList;
+    public void setReservado(Integer reservado) {
+        this.reservado = reservado;
+    }
+
+    public Integer getComprados() {
+        return comprados;
+    }
+
+    public void setComprados(Integer comprados) {
+        this.comprados = comprados;
+    }
+
+    @XmlTransient
+    public List<Lote> getLoteList() {
+        return loteList;
+    }
+
+    public void setLoteList(List<Lote> loteList) {
+        this.loteList = loteList;
     }
 
     public Almacen getAlmacen() {
@@ -108,6 +132,15 @@ public class Altipoitem implements Serializable {
 
     public void setTipoitem(Tipoitem tipoitem) {
         this.tipoitem = tipoitem;
+    }
+
+    @XmlTransient
+    public List<Pealtipoitem> getPealtipoitemList() {
+        return pealtipoitemList;
+    }
+
+    public void setPealtipoitemList(List<Pealtipoitem> pealtipoitemList) {
+        this.pealtipoitemList = pealtipoitemList;
     }
 
     @Override
