@@ -6,6 +6,9 @@
 package controladora;
 
 import bo.CotizacionBO;
+import entidades.Cotizacion;
+import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -17,10 +20,35 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class CotizacionMB {
+    
+@EJB
+private CotizacionBO cotizacionBO;
 
-    /*@EJB
-    CotizacionBO usuarioBO;*/
+private List<Cotizacion> listaCotizacion;
+    /**
+     * Creates a new instance of CotizacionMB
+     */
     public CotizacionMB() {
     }
-    
+   @PostConstruct
+     public void init(){
+       listaCotizacion=cotizacionBO.getAllCotizaciones();  
+     }
+
+    public CotizacionBO getCotizacionBO() {
+        return cotizacionBO;
+    }
+
+    public void setCotizacionBO(CotizacionBO cotizacionBO) {
+        this.cotizacionBO = cotizacionBO;
+    }
+
+    public List<Cotizacion> getListaCotizacion() {
+        return listaCotizacion;
+    }
+
+    public void setListaCotizacion(List<Cotizacion> listaCotizacion) {
+        this.listaCotizacion = listaCotizacion;
+    }
+     
 }
