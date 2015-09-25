@@ -5,8 +5,11 @@
  */
 package controladora;
 
+import bo.PermisoBO;
 import bo.UsuarioBO;
+import dto.PermisoDTO;
 import dto.UsuarioDTO;
+import entidades.Permiso;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -27,8 +30,12 @@ public class LoginMB implements Serializable{
 
     @EJB
     UsuarioBO usuarioBO = new UsuarioBO();
+    @EJB
+    PermisoBO permisoBO = new PermisoBO();
+    
     private String nombreUsuario;
     private String contraseña;
+    private List<PermisoDTO> listaPermisos;
     public LoginMB() {  
     }
     
@@ -51,6 +58,9 @@ public class LoginMB implements Serializable{
         
         if(u.getIdusuario() != null){
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario",u);
+            List<PermisoDTO> listaPermisos = permisoBO.getPermisosByRol(u.getIdRol());
+            setListaPermisos(listaPermisos);
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("permisos",listaPermisos);
             try {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
             } catch (Exception ex) {}
@@ -88,6 +98,20 @@ public class LoginMB implements Serializable{
      */
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
+    }
+
+    /**
+     * @return the listaPermisos
+     */
+    public List<PermisoDTO> getListaPermisos() {
+        return listaPermisos;
+    }
+
+    /**
+     * @param listaPermisos the listaPermisos to set
+     */
+    public void setListaPermisos(List<PermisoDTO> listaPermisos) {
+        this.listaPermisos = listaPermisos;
     }
     
     
