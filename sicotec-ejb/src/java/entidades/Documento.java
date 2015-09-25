@@ -6,18 +6,20 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -29,9 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Documento.findAll", query = "SELECT d FROM Documento d"),
     @NamedQuery(name = "Documento.findByIddocumento", query = "SELECT d FROM Documento d WHERE d.iddocumento = :iddocumento"),
-    @NamedQuery(name = "Documento.findByNombre", query = "SELECT d FROM Documento d WHERE d.nombre = :nombre"),
-    @NamedQuery(name = "Documento.findByCorrelativo", query = "SELECT d FROM Documento d WHERE d.correlativo = :correlativo"),
-    @NamedQuery(name = "Documento.findBySerie", query = "SELECT d FROM Documento d WHERE d.serie = :serie")})
+    @NamedQuery(name = "Documento.findByNombre", query = "SELECT d FROM Documento d WHERE d.nombre = :nombre")})
 public class Documento implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -42,13 +42,8 @@ public class Documento implements Serializable {
     @Size(max = 45)
     @Column(name = "nombre")
     private String nombre;
-    @Column(name = "correlativo")
-    private Integer correlativo;
-    @Column(name = "serie")
-    private Integer serie;
-    @JoinColumn(name = "idalmacen", referencedColumnName = "idalmacen")
-    @ManyToOne(optional = false)
-    private Almacen idalmacen;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "documento")
+    private List<Docalmacen> docalmacenList;
 
     public Documento() {
     }
@@ -73,28 +68,13 @@ public class Documento implements Serializable {
         this.nombre = nombre;
     }
 
-    public Integer getCorrelativo() {
-        return correlativo;
+    @XmlTransient
+    public List<Docalmacen> getDocalmacenList() {
+        return docalmacenList;
     }
 
-    public void setCorrelativo(Integer correlativo) {
-        this.correlativo = correlativo;
-    }
-
-    public Integer getSerie() {
-        return serie;
-    }
-
-    public void setSerie(Integer serie) {
-        this.serie = serie;
-    }
-
-    public Almacen getIdalmacen() {
-        return idalmacen;
-    }
-
-    public void setIdalmacen(Almacen idalmacen) {
-        this.idalmacen = idalmacen;
+    public void setDocalmacenList(List<Docalmacen> docalmacenList) {
+        this.docalmacenList = docalmacenList;
     }
 
     @Override

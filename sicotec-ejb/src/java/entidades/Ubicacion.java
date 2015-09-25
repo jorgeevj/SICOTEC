@@ -6,7 +6,9 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,9 +19,11 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -75,6 +79,8 @@ public class Ubicacion implements Serializable {
         @JoinColumn(name = "idpersona", referencedColumnName = "idpersona")})
     @ManyToOne(optional = false)
     private Emppersona emppersona;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idubicacion")
+    private List<Telefono> telefonoList;
 
     public Ubicacion() {
     }
@@ -161,6 +167,15 @@ public class Ubicacion implements Serializable {
 
     public void setEmppersona(Emppersona emppersona) {
         this.emppersona = emppersona;
+    }
+
+    @XmlTransient
+    public List<Telefono> getTelefonoList() {
+        return telefonoList;
+    }
+
+    public void setTelefonoList(List<Telefono> telefonoList) {
+        this.telefonoList = telefonoList;
     }
 
     @Override

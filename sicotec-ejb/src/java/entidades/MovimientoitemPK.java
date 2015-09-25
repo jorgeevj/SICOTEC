@@ -16,30 +16,30 @@ import javax.validation.constraints.NotNull;
  * @author Jorge
  */
 @Embeddable
-public class GuiaitemPK implements Serializable {
+public class MovimientoitemPK implements Serializable {
     @Basic(optional = false)
     @NotNull
-    @Column(name = "idguia")
-    private int idguia;
+    @Column(name = "idmovimiento")
+    private int idmovimiento;
     @Basic(optional = false)
     @NotNull
     @Column(name = "iditem")
     private int iditem;
 
-    public GuiaitemPK() {
+    public MovimientoitemPK() {
     }
 
-    public GuiaitemPK(int idguia, int iditem) {
-        this.idguia = idguia;
+    public MovimientoitemPK(int idmovimiento, int iditem) {
+        this.idmovimiento = idmovimiento;
         this.iditem = iditem;
     }
 
-    public int getIdguia() {
-        return idguia;
+    public int getIdmovimiento() {
+        return idmovimiento;
     }
 
-    public void setIdguia(int idguia) {
-        this.idguia = idguia;
+    public void setIdmovimiento(int idmovimiento) {
+        this.idmovimiento = idmovimiento;
     }
 
     public int getIditem() {
@@ -53,7 +53,7 @@ public class GuiaitemPK implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) idguia;
+        hash += (int) idmovimiento;
         hash += (int) iditem;
         return hash;
     }
@@ -61,11 +61,11 @@ public class GuiaitemPK implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof GuiaitemPK)) {
+        if (!(object instanceof MovimientoitemPK)) {
             return false;
         }
-        GuiaitemPK other = (GuiaitemPK) object;
-        if (this.idguia != other.idguia) {
+        MovimientoitemPK other = (MovimientoitemPK) object;
+        if (this.idmovimiento != other.idmovimiento) {
             return false;
         }
         if (this.iditem != other.iditem) {
@@ -76,7 +76,7 @@ public class GuiaitemPK implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.GuiaitemPK[ idguia=" + idguia + ", iditem=" + iditem + " ]";
+        return "entidades.MovimientoitemPK[ idmovimiento=" + idmovimiento + ", iditem=" + iditem + " ]";
     }
     
 }

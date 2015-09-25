@@ -31,33 +31,26 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Jorge
  */
 @Entity
-@Table(name = "guia")
+@Table(name = "movimiento")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Guia.findAll", query = "SELECT g FROM Guia g"),
-    @NamedQuery(name = "Guia.findByIdguia", query = "SELECT g FROM Guia g WHERE g.idguia = :idguia"),
-    @NamedQuery(name = "Guia.findByIdventa", query = "SELECT g FROM Guia g WHERE g.idventa = :idventa"),
-    @NamedQuery(name = "Guia.findByIdcompra", query = "SELECT g FROM Guia g WHERE g.idcompra = :idcompra"),
-    @NamedQuery(name = "Guia.findByFecha", query = "SELECT g FROM Guia g WHERE g.fecha = :fecha"),
-    @NamedQuery(name = "Guia.findByIdalmacenOrigen", query = "SELECT g FROM Guia g WHERE g.idalmacenOrigen = :idalmacenOrigen"),
-    @NamedQuery(name = "Guia.findByIdalmacenDestino", query = "SELECT g FROM Guia g WHERE g.idalmacenDestino = :idalmacenDestino"),
-    @NamedQuery(name = "Guia.findByNombreOrigen", query = "SELECT g FROM Guia g WHERE g.nombreOrigen = :nombreOrigen"),
-    @NamedQuery(name = "Guia.findByNombreDestino", query = "SELECT g FROM Guia g WHERE g.nombreDestino = :nombreDestino"),
-    @NamedQuery(name = "Guia.findByMotivo", query = "SELECT g FROM Guia g WHERE g.motivo = :motivo"),
-    @NamedQuery(name = "Guia.findByComentario", query = "SELECT g FROM Guia g WHERE g.comentario = :comentario"),
-    @NamedQuery(name = "Guia.findByEstado", query = "SELECT g FROM Guia g WHERE g.estado = :estado"),
-    @NamedQuery(name = "Guia.findByIddocumento", query = "SELECT g FROM Guia g WHERE g.iddocumento = :iddocumento")})
-public class Guia implements Serializable {
+    @NamedQuery(name = "Movimiento.findAll", query = "SELECT m FROM Movimiento m"),
+    @NamedQuery(name = "Movimiento.findByIdmovimiento", query = "SELECT m FROM Movimiento m WHERE m.idmovimiento = :idmovimiento"),
+    @NamedQuery(name = "Movimiento.findByFecha", query = "SELECT m FROM Movimiento m WHERE m.fecha = :fecha"),
+    @NamedQuery(name = "Movimiento.findByIdalmacenOrigen", query = "SELECT m FROM Movimiento m WHERE m.idalmacenOrigen = :idalmacenOrigen"),
+    @NamedQuery(name = "Movimiento.findByIdalmacenDestino", query = "SELECT m FROM Movimiento m WHERE m.idalmacenDestino = :idalmacenDestino"),
+    @NamedQuery(name = "Movimiento.findByNombreOrigen", query = "SELECT m FROM Movimiento m WHERE m.nombreOrigen = :nombreOrigen"),
+    @NamedQuery(name = "Movimiento.findByNombreDestino", query = "SELECT m FROM Movimiento m WHERE m.nombreDestino = :nombreDestino"),
+    @NamedQuery(name = "Movimiento.findByMotivo", query = "SELECT m FROM Movimiento m WHERE m.motivo = :motivo"),
+    @NamedQuery(name = "Movimiento.findByComentario", query = "SELECT m FROM Movimiento m WHERE m.comentario = :comentario"),
+    @NamedQuery(name = "Movimiento.findByEstado", query = "SELECT m FROM Movimiento m WHERE m.estado = :estado")})
+public class Movimiento implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "idguia")
-    private Integer idguia;
-    @Column(name = "idventa")
-    private Integer idventa;
-    @Column(name = "idcompra")
-    private Integer idcompra;
+    @Column(name = "idmovimiento")
+    private Integer idmovimiento;
     @Column(name = "fecha")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
@@ -79,44 +72,25 @@ public class Guia implements Serializable {
     private String comentario;
     @Column(name = "estado")
     private Integer estado;
-    @Size(max = 45)
-    @Column(name = "iddocumento")
-    private String iddocumento;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "guia")
-    private List<Guiaitem> guiaitemList;
-    @JoinColumn(name = "idtipoGuia", referencedColumnName = "idtipoGuia")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "movimiento")
+    private List<Movimientoitem> movimientoitemList;
+    @JoinColumn(name = "idtipoMovimiento", referencedColumnName = "idtipoMovimiento")
     @ManyToOne(optional = false)
-    private Tipoguia idtipoGuia;
+    private Tipomovimiento idtipoMovimiento;
 
-    public Guia() {
+    public Movimiento() {
     }
 
-    public Guia(Integer idguia) {
-        this.idguia = idguia;
+    public Movimiento(Integer idmovimiento) {
+        this.idmovimiento = idmovimiento;
     }
 
-    public Integer getIdguia() {
-        return idguia;
+    public Integer getIdmovimiento() {
+        return idmovimiento;
     }
 
-    public void setIdguia(Integer idguia) {
-        this.idguia = idguia;
-    }
-
-    public Integer getIdventa() {
-        return idventa;
-    }
-
-    public void setIdventa(Integer idventa) {
-        this.idventa = idventa;
-    }
-
-    public Integer getIdcompra() {
-        return idcompra;
-    }
-
-    public void setIdcompra(Integer idcompra) {
-        this.idcompra = idcompra;
+    public void setIdmovimiento(Integer idmovimiento) {
+        this.idmovimiento = idmovimiento;
     }
 
     public Date getFecha() {
@@ -183,46 +157,38 @@ public class Guia implements Serializable {
         this.estado = estado;
     }
 
-    public String getIddocumento() {
-        return iddocumento;
-    }
-
-    public void setIddocumento(String iddocumento) {
-        this.iddocumento = iddocumento;
-    }
-
     @XmlTransient
-    public List<Guiaitem> getGuiaitemList() {
-        return guiaitemList;
+    public List<Movimientoitem> getMovimientoitemList() {
+        return movimientoitemList;
     }
 
-    public void setGuiaitemList(List<Guiaitem> guiaitemList) {
-        this.guiaitemList = guiaitemList;
+    public void setMovimientoitemList(List<Movimientoitem> movimientoitemList) {
+        this.movimientoitemList = movimientoitemList;
     }
 
-    public Tipoguia getIdtipoGuia() {
-        return idtipoGuia;
+    public Tipomovimiento getIdtipoMovimiento() {
+        return idtipoMovimiento;
     }
 
-    public void setIdtipoGuia(Tipoguia idtipoGuia) {
-        this.idtipoGuia = idtipoGuia;
+    public void setIdtipoMovimiento(Tipomovimiento idtipoMovimiento) {
+        this.idtipoMovimiento = idtipoMovimiento;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idguia != null ? idguia.hashCode() : 0);
+        hash += (idmovimiento != null ? idmovimiento.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Guia)) {
+        if (!(object instanceof Movimiento)) {
             return false;
         }
-        Guia other = (Guia) object;
-        if ((this.idguia == null && other.idguia != null) || (this.idguia != null && !this.idguia.equals(other.idguia))) {
+        Movimiento other = (Movimiento) object;
+        if ((this.idmovimiento == null && other.idmovimiento != null) || (this.idmovimiento != null && !this.idmovimiento.equals(other.idmovimiento))) {
             return false;
         }
         return true;
@@ -230,7 +196,7 @@ public class Guia implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.Guia[ idguia=" + idguia + " ]";
+        return "entidades.Movimiento[ idmovimiento=" + idmovimiento + " ]";
     }
     
 }

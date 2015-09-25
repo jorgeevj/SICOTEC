@@ -5,7 +5,7 @@
  */
 package dao;
 
-import entidades.Tipoguia;
+import entidades.Docalmacen;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Jorge
  */
 @Stateless
-public class TipoguiaFacade extends AbstractFacade<Tipoguia> {
+public class DocalmacenFacade extends AbstractFacade<Docalmacen> {
     @PersistenceContext(unitName = "sicotec-ejbPU")
     private EntityManager em;
 
@@ -24,8 +24,8 @@ public class TipoguiaFacade extends AbstractFacade<Tipoguia> {
         return em;
     }
 
-    public TipoguiaFacade() {
-        super(Tipoguia.class);
+    public DocalmacenFacade() {
+        super(Docalmacen.class);
     }
     
 }

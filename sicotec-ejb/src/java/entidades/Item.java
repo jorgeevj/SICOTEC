@@ -49,7 +49,7 @@ public class Item implements Serializable {
     @Column(name = "operatividad")
     private String operatividad;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "item")
-    private List<Guiaitem> guiaitemList;
+    private List<Movimientoitem> movimientoitemList;
     @JoinColumn(name = "idlote", referencedColumnName = "idlote")
     @ManyToOne(optional = false)
     private Lote idlote;
@@ -90,12 +90,12 @@ public class Item implements Serializable {
     }
 
     @XmlTransient
-    public List<Guiaitem> getGuiaitemList() {
-        return guiaitemList;
+    public List<Movimientoitem> getMovimientoitemList() {
+        return movimientoitemList;
     }
 
-    public void setGuiaitemList(List<Guiaitem> guiaitemList) {
-        this.guiaitemList = guiaitemList;
+    public void setMovimientoitemList(List<Movimientoitem> movimientoitemList) {
+        this.movimientoitemList = movimientoitemList;
     }
 
     public Lote getIdlote() {

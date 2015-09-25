@@ -5,7 +5,7 @@
  */
 package dao;
 
-import entidades.Guiaitem;
+import entidades.Movimientoitem;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Jorge
  */
 @Stateless
-public class GuiaitemFacade extends AbstractFacade<Guiaitem> {
+public class MovimientoitemFacade extends AbstractFacade<Movimientoitem> {
     @PersistenceContext(unitName = "sicotec-ejbPU")
     private EntityManager em;
 
@@ -24,8 +24,8 @@ public class GuiaitemFacade extends AbstractFacade<Guiaitem> {
         return em;
     }
 
-    public GuiaitemFacade() {
-        super(Guiaitem.class);
+    public MovimientoitemFacade() {
+        super(Movimientoitem.class);
     }
     
 }

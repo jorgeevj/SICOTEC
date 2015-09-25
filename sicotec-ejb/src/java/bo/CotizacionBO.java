@@ -5,6 +5,8 @@
  */
 package bo;
 
+import entidades.Cotizacion;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
@@ -19,7 +21,11 @@ import javax.ejb.LocalBean;
 public class CotizacionBO {
 
     public List getAllCotizaciones() {
-        return null;
+        Cotizacion c=new Cotizacion();
+        c.setIdcotizacion(1);
+        List<Cotizacion> lista=new ArrayList<>();
+                lista.add(c);
+        return lista;
     }
 
     // Add business logic below. (Right-click in editor and choose

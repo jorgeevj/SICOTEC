@@ -23,6 +23,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -37,7 +38,11 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Compra.findAll", query = "SELECT c FROM Compra c"),
     @NamedQuery(name = "Compra.findByIdcompra", query = "SELECT c FROM Compra c WHERE c.idcompra = :idcompra"),
     @NamedQuery(name = "Compra.findByFecha", query = "SELECT c FROM Compra c WHERE c.fecha = :fecha"),
-    @NamedQuery(name = "Compra.findByTotal", query = "SELECT c FROM Compra c WHERE c.total = :total")})
+    @NamedQuery(name = "Compra.findByTotal", query = "SELECT c FROM Compra c WHERE c.total = :total"),
+    @NamedQuery(name = "Compra.findByIddocumento", query = "SELECT c FROM Compra c WHERE c.iddocumento = :iddocumento"),
+    @NamedQuery(name = "Compra.findByNSerie", query = "SELECT c FROM Compra c WHERE c.nSerie = :nSerie"),
+    @NamedQuery(name = "Compra.findByCorrelativo", query = "SELECT c FROM Compra c WHERE c.correlativo = :correlativo"),
+    @NamedQuery(name = "Compra.findByIdalmacen", query = "SELECT c FROM Compra c WHERE c.idalmacen = :idalmacen")})
 public class Compra implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -51,6 +56,18 @@ public class Compra implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "total")
     private Double total;
+    @Size(max = 45)
+    @Column(name = "iddocumento")
+    private String iddocumento;
+    @Size(max = 45)
+    @Column(name = "nSerie")
+    private String nSerie;
+    @Size(max = 45)
+    @Column(name = "correlativo")
+    private String correlativo;
+    @Size(max = 45)
+    @Column(name = "idalmacen")
+    private String idalmacen;
     @JoinColumn(name = "idempresa", referencedColumnName = "idempresa")
     @ManyToOne(optional = false)
     private Empresa idempresa;
@@ -88,6 +105,38 @@ public class Compra implements Serializable {
 
     public void setTotal(Double total) {
         this.total = total;
+    }
+
+    public String getIddocumento() {
+        return iddocumento;
+    }
+
+    public void setIddocumento(String iddocumento) {
+        this.iddocumento = iddocumento;
+    }
+
+    public String getNSerie() {
+        return nSerie;
+    }
+
+    public void setNSerie(String nSerie) {
+        this.nSerie = nSerie;
+    }
+
+    public String getCorrelativo() {
+        return correlativo;
+    }
+
+    public void setCorrelativo(String correlativo) {
+        this.correlativo = correlativo;
+    }
+
+    public String getIdalmacen() {
+        return idalmacen;
+    }
+
+    public void setIdalmacen(String idalmacen) {
+        this.idalmacen = idalmacen;
     }
 
     public Empresa getIdempresa() {

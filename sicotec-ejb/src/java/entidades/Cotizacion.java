@@ -40,7 +40,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Cotizacion.findByEstado", query = "SELECT c FROM Cotizacion c WHERE c.estado = :estado"),
     @NamedQuery(name = "Cotizacion.findByFechaEnvio", query = "SELECT c FROM Cotizacion c WHERE c.fechaEnvio = :fechaEnvio"),
     @NamedQuery(name = "Cotizacion.findByDuracion", query = "SELECT c FROM Cotizacion c WHERE c.duracion = :duracion"),
-    @NamedQuery(name = "Cotizacion.findByEntrega", query = "SELECT c FROM Cotizacion c WHERE c.entrega = :entrega")})
+    @NamedQuery(name = "Cotizacion.findByEntrega", query = "SELECT c FROM Cotizacion c WHERE c.entrega = :entrega"),
+    @NamedQuery(name = "Cotizacion.findByNSerie", query = "SELECT c FROM Cotizacion c WHERE c.nSerie = :nSerie"),
+    @NamedQuery(name = "Cotizacion.findByCorrelativo", query = "SELECT c FROM Cotizacion c WHERE c.correlativo = :correlativo"),
+    @NamedQuery(name = "Cotizacion.findByIdalmacen", query = "SELECT c FROM Cotizacion c WHERE c.idalmacen = :idalmacen")})
 public class Cotizacion implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -58,6 +61,15 @@ public class Cotizacion implements Serializable {
     private Integer duracion;
     @Column(name = "entrega")
     private Integer entrega;
+    @Size(max = 45)
+    @Column(name = "nSerie")
+    private String nSerie;
+    @Size(max = 45)
+    @Column(name = "correlativo")
+    private String correlativo;
+    @Size(max = 45)
+    @Column(name = "idalmacen")
+    private String idalmacen;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cotizacion")
     private List<Cotipoitem> cotipoitemList;
     @JoinColumn(name = "idempresa", referencedColumnName = "idempresa")
@@ -109,6 +121,30 @@ public class Cotizacion implements Serializable {
 
     public void setEntrega(Integer entrega) {
         this.entrega = entrega;
+    }
+
+    public String getNSerie() {
+        return nSerie;
+    }
+
+    public void setNSerie(String nSerie) {
+        this.nSerie = nSerie;
+    }
+
+    public String getCorrelativo() {
+        return correlativo;
+    }
+
+    public void setCorrelativo(String correlativo) {
+        this.correlativo = correlativo;
+    }
+
+    public String getIdalmacen() {
+        return idalmacen;
+    }
+
+    public void setIdalmacen(String idalmacen) {
+        this.idalmacen = idalmacen;
     }
 
     @XmlTransient

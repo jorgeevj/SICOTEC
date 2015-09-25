@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Venta.findByDescuento", query = "SELECT v FROM Venta v WHERE v.descuento = :descuento"),
     @NamedQuery(name = "Venta.findByTotal", query = "SELECT v FROM Venta v WHERE v.total = :total"),
     @NamedQuery(name = "Venta.findByEstado", query = "SELECT v FROM Venta v WHERE v.estado = :estado"),
-    @NamedQuery(name = "Venta.findByIddocumento", query = "SELECT v FROM Venta v WHERE v.iddocumento = :iddocumento")})
+    @NamedQuery(name = "Venta.findByIddocumento", query = "SELECT v FROM Venta v WHERE v.iddocumento = :iddocumento"),
+    @NamedQuery(name = "Venta.findByNSerie", query = "SELECT v FROM Venta v WHERE v.nSerie = :nSerie"),
+    @NamedQuery(name = "Venta.findByCorrelativo", query = "SELECT v FROM Venta v WHERE v.correlativo = :correlativo")})
 public class Venta implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -64,6 +66,12 @@ public class Venta implements Serializable {
     @Size(max = 45)
     @Column(name = "iddocumento")
     private String iddocumento;
+    @Size(max = 45)
+    @Column(name = "nSerie")
+    private String nSerie;
+    @Size(max = 45)
+    @Column(name = "correlativo")
+    private String correlativo;
     @ManyToMany(mappedBy = "ventaList")
     private List<Mediopago> mediopagoList;
     @JoinColumn(name = "idempresa", referencedColumnName = "idempresa")
@@ -128,6 +136,22 @@ public class Venta implements Serializable {
 
     public void setIddocumento(String iddocumento) {
         this.iddocumento = iddocumento;
+    }
+
+    public String getNSerie() {
+        return nSerie;
+    }
+
+    public void setNSerie(String nSerie) {
+        this.nSerie = nSerie;
+    }
+
+    public String getCorrelativo() {
+        return correlativo;
+    }
+
+    public void setCorrelativo(String correlativo) {
+        this.correlativo = correlativo;
     }
 
     @XmlTransient
