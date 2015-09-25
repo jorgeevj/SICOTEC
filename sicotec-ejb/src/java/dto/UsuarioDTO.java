@@ -26,6 +26,9 @@ private Integer idusuario;
     private Persona idpersona;
     private Rol idrol;
     
+    //EXTRAS
+    private int idRol;
+    
     //
     private List<Evento> eventoList;
 
@@ -112,4 +115,19 @@ private Integer idusuario;
     public void setEventoList(List<Evento> eventoList) {
         this.eventoList = eventoList;
     }
+
+    /**
+     * @return the idRol
+     */
+    public int getIdRol() {
+        return idRol;
+    }
+
+    /**
+     * @param idRol the idRol to set
+     */
+    public void setIdRol(int idRol) {
+        this.idRol = idRol;
+    }
+    
 }

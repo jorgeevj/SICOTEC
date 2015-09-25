@@ -36,11 +36,12 @@ public class PermisoFacade extends AbstractFacade<Permiso> {
         List<Permiso> permisos = new ArrayList<Permiso>();
         try{
             String sql = "SELECT p.* "+
-                         "FROM sicotecBD.permrol pr " +
-                         "INNER JOIN sicotecBD.permiso p " +
-                         "ON p.idpermiso = pr.idpermiso";
+                         "FROM permRol pr " +
+                         "INNER JOIN permiso p " +
+                         "ON p.idpermiso = pr.idpermiso "+
+                         "WHERE pr.idrol = "+idRol;
             
-            Query query = em.createNativeQuery(sql, Permiso.class);            
+            Query query = em.createNativeQuery(sql, Permiso.class);  
             permisos = query.getResultList();
         }catch(Exception e){
             permisos = new ArrayList<Permiso>();

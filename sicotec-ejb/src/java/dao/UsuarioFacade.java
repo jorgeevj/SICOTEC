@@ -58,7 +58,6 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
             query.setParameter("nombre",usuario.getNombre());
             query.setParameter("clave",usuario.getClave());
 
-            
             u = (Usuario)query.getSingleResult();
             
         }catch(Exception e){

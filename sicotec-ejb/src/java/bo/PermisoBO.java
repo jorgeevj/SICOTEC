@@ -22,9 +22,18 @@ import javax.ejb.LocalBean;
 @Stateless
 @LocalBean
 public class PermisoBO {
+    
     @EJB
     private PermisoFacade permisoFacade = new PermisoFacade();
     
+    public List<PermisoDTO> getPermisosByRol(int idRol){
+        List<PermisoDTO> permisos = new ArrayList<PermisoDTO>();
+        
+        List<Permiso> permisosEnt = permisoFacade.permisosByRol(idRol);
+        permisos = this.convertListEntityToDTO(permisosEnt);
+        
+        return permisos;
+    }
     
     public List<PermisoDTO> convertListEntityToDTO(List<Permiso> listaUsuarios){
         List<PermisoDTO> listaDTO = new ArrayList<PermisoDTO>();

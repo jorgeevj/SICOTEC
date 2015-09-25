@@ -31,7 +31,7 @@ public class UsuarioBO {
         UsuarioDTO u = new UsuarioDTO();
         
         Usuario us = usuarioFacade.validateLogin(usuario);
-        if(us != null){
+        if(us.getIdusuario() != null){
             u = convertEntityToDTO(us);
         }
         
@@ -65,6 +65,7 @@ public class UsuarioBO {
         DTO.setIdpersona(usuario.getIdpersona());
         DTO.setNombre(usuario.getNombre());
         DTO.setClave(usuario.getClave());
+        DTO.setIdRol(usuario.getIdrol().getIdrol());
 
         return DTO;
     }
