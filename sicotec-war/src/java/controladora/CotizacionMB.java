@@ -5,6 +5,8 @@
  */
 package controladora;
 
+import bo.CotizacionBO;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -16,9 +18,8 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class CotizacionMB {
 
-    /**
-     * Creates a new instance of CotizacionMB
-     */
+    /*@EJB
+    CotizacionBO usuarioBO;*/
     public CotizacionMB() {
     }
     

@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Login</title>
+            <link rel="icon" type="image/png" href="public/images/icon.png"></link>
+            <link href="public/plugins/nanoScroller/nanoscroller.css" rel="stylesheet"></link>
+            <link href="public/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"></link>
+            <link href="public/plugins/material-design-icons/css/material-design-icons.min.css" rel="stylesheet"></link>
+            <link href="public/plugins/ionicons/css/ionicons.min.css" rel="stylesheet"></link>
+            <link href="public/plugins/weatherIcons/css/weather-icons.min.css" rel="stylesheet"></link>
+            <link href="public/css/_con.min.css" rel="stylesheet"></link>   
+           
+    </h:head>
+    <h:body>
+
+  <section id="sign-in">
+
+    <!-- Background Bubbles -->
+    <canvas id="bubble-canvas"></canvas>
+    <!-- /Background Bubbles -->
+
+    <!-- Sign In Form -->
+    <h:form onsubmit="return false;">
+      <div class="row links">
+        <div class="col s6 logo">
+            <img src="public/images/logo-white.png" alt=""></img>
+        </div>
+      </div>
+
+      <div class="card-panel clearfix">
+
+
+        <!-- Username -->
+        <div class="input-field">
+          <i class="fa fa-user prefix"></i>
+          <p:focus for="usuario"/>
+          <p:inputText value="#{loginMB.nombreUsuario}" id="usuario"></p:inputText>
+          <label for="username-input">Usuario</label>
+        </div>
+        <!-- /Username -->
+
+        <!-- Password -->
+        <div class="input-field">
+          <i class="fa fa-unlock-alt prefix"></i>
+          <p:password value="#{loginMB.contraseña}" id="contra"></p:password>
+          <label for="password-input">Contraseña</label>
+        </div>
+        <!-- /Password -->
+
+        <div class="switch" style="float: right">
+          <label>
+              <input type="checkbox" value="true"/>
+            <span class="lever"></span>
+            Recuerdame
+          </label>
+        </div>
+        <p:growl id="gr_msj" showDetail="true"></p:growl>
+        <p:remoteCommand actionListener="#{loginMB.loguearse()}" update="gr_msj contra" name="loguin"/>
+        <button onclick="loguin()" class="waves-effect waves-light btn-large z-depth-0 z-depth-1-hover">Ingresar</button>
+        
+      </div>
+
+    </h:form>
+    <!-- /Sign In Form -->
+
+  </section>
+        
+        <script src="public/js/_demo.js"></script>
+        <script src="public/js/jquery.min.js"></script>
+        <script src="public/plugins/jqueryRAF/jquery.requestAnimationFrame.min.js"></script>
+        <script src="public/plugins/nanoScroller/jquery.nanoscroller.min.js"></script>
+        <script src="public/plugins/materialize/js/materialize.min.js"></script>
+        <script src="public/plugins/sortable/Sortable.min.js"></script>
+        <script src="public/js/_con.min.js"></script>
+    </h:body>
+</html>
+
