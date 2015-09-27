@@ -5,6 +5,8 @@
  */
 package controladora.Movimiento;
 
+import dto.DocumentoDTO;
+import dto.MovimientoDTO;
 import dto.TipomovimientoDTO;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +22,9 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class SessionBeanMovimiento {
     private List<TipomovimientoDTO> listaTipoMovimiento = new ArrayList<TipomovimientoDTO>();
-
+    private List<MovimientoDTO> listaMovimiento = new ArrayList<MovimientoDTO>();
+    private List<DocumentoDTO> listaDocumento = new ArrayList<DocumentoDTO>();
+    private ArrayList listaEstados = new ArrayList();
     /**
      * @return the listaTipoMovimiento
      */
@@ -33,6 +37,48 @@ public class SessionBeanMovimiento {
      */
     public void setListaTipoMovimiento(List<TipomovimientoDTO> listaTipoMovimiento) {
         this.listaTipoMovimiento = listaTipoMovimiento;
+    }
+
+    /**
+     * @return the listaMovimiento
+     */
+    public List<MovimientoDTO> getListaMovimiento() {
+        return listaMovimiento;
+    }
+
+    /**
+     * @param listaMovimiento the listaMovimiento to set
+     */
+    public void setListaMovimiento(List<MovimientoDTO> listaMovimiento) {
+        this.listaMovimiento = listaMovimiento;
+    }
+
+    /**
+     * @return the listaEstados
+     */
+    public ArrayList getListaEstados() {
+        return listaEstados;
+    }
+
+    /**
+     * @param listaEstados the listaEstados to set
+     */
+    public void setListaEstados(ArrayList listaEstados) {
+        this.listaEstados = listaEstados;
+    }
+
+    /**
+     * @return the listaDocumento
+     */
+    public List<DocumentoDTO> getListaDocumento() {
+        return listaDocumento;
+    }
+
+    /**
+     * @param listaDocumento the listaDocumento to set
+     */
+    public void setListaDocumento(List<DocumentoDTO> listaDocumento) {
+        this.listaDocumento = listaDocumento;
     }
     
 }
