@@ -11,10 +11,7 @@ package dto;
  */
 public class TipomovimientoDTO {
     private Integer idtipoMovimiento;
-    private String iddocumento;
     private String nombre;
-    private String nSerie;
-    private String correlativo;
 
     /**
      * @return the idtipoMovimiento
@@ -29,21 +26,6 @@ public class TipomovimientoDTO {
     public void setIdtipoMovimiento(Integer idtipoMovimiento) {
         this.idtipoMovimiento = idtipoMovimiento;
     }
-
-    /**
-     * @return the iddocumento
-     */
-    public String getIddocumento() {
-        return iddocumento;
-    }
-
-    /**
-     * @param iddocumento the iddocumento to set
-     */
-    public void setIddocumento(String iddocumento) {
-        this.iddocumento = iddocumento;
-    }
-
     /**
      * @return the nombre
      */
@@ -56,34 +38,6 @@ public class TipomovimientoDTO {
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    /**
-     * @return the nSerie
-     */
-    public String getnSerie() {
-        return nSerie;
-    }
-
-    /**
-     * @param nSerie the nSerie to set
-     */
-    public void setnSerie(String nSerie) {
-        this.nSerie = nSerie;
-    }
-
-    /**
-     * @return the correlativo
-     */
-    public String getCorrelativo() {
-        return correlativo;
-    }
-
-    /**
-     * @param correlativo the correlativo to set
-     */
-    public void setCorrelativo(String correlativo) {
-        this.correlativo = correlativo;
     }
     
     

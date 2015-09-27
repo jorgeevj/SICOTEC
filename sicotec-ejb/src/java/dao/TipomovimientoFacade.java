@@ -43,6 +43,7 @@ public class TipomovimientoFacade extends AbstractFacade<Tipomovimiento> {
             tMovimiento = query.getResultList();
             
         }catch(Exception e){
+            
             tMovimiento = new ArrayList<Tipomovimiento>();
         }
         

@@ -28,7 +28,7 @@ public class MovimientoBO {
     
     public List<TipomovimientoDTO> getAllTipoMovimiento(){
         List<TipomovimientoDTO> lista = new ArrayList<TipomovimientoDTO>();
-        List<Tipomovimiento> listaEntidad = tMovimentoFacade.findAll();
+        List<Tipomovimiento> listaEntidad = tMovimentoFacade.getAllTMovimiento();
         System.out.println(listaEntidad.size());
         lista = convertListEntityToDTO(listaEntidad);
         return lista;
@@ -51,9 +51,6 @@ public class MovimientoBO {
         TipomovimientoDTO DTO = new TipomovimientoDTO();
             
         DTO.setIdtipoMovimiento(tipoMovimiento.getIdtipoMovimiento());
-        DTO.setIddocumento(tipoMovimiento.getIddocumento());
-        DTO.setCorrelativo(tipoMovimiento.getCorrelativo());
-        DTO.setnSerie(tipoMovimiento.getNSerie());
         DTO.setNombre(tipoMovimiento.getNombre());
 
         return DTO;
