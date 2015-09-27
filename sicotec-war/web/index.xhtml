@@ -42,7 +42,7 @@
             </li>
             <li class="user">
               <a class="dropdown-button" href="#!" data-activates="user-dropdown">
-                  <img src="public/images/user.jpg" alt="John Doe" class="circle"></img>John Doe<i class="mdi-navigation-expand-more right"></i>
+                  <img src="public/images/noUser.png" class="circle"></img>#{loginMB.nombreUsuarioSession}<i class="mdi-navigation-expand-more right"></i>
               </a>
 
               <ul id="user-dropdown" class="dropdown-content">
@@ -51,8 +51,15 @@
                 <li><a href="#!"><i class="fa fa-cogs"></i> Configuración</a>
                 </li>
                 <li class="divider"></li>
-                <li><a href="page-sign-in.html"><i class="fa fa-sign-out"></i> Salir</a>
-                </li>
+                <h:form>
+                    <li  onclick="logOut()">
+                        <a href="" onclick="return false;">
+                            <i class="fa fa-sign-out"></i> 
+                            Salir
+                        </a>
+                    </li>
+                    <p:remoteCommand actionListener="#{utils.logOut()}" name="logOut"/>
+                </h:form>
               </ul>
             </li>
           </ul>
@@ -87,7 +94,7 @@
 
             <ul>
               <li class="label">Permisos</li>
-              <ui:repeat var="perm" value="#{loginMB.listaPermisos}">
+              <ui:repeat var="perm" value="#{loginMB.listaPermisosSession}">
                 <li>
                     <a href="#{perm.url}" class="waves-effect waves-blue"><i class="fa fa-magic"></i> #{perm.nombre}</a>
                 </li>  

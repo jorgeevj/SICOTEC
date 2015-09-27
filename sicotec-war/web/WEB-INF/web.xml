@@ -11,11 +11,15 @@
     </servlet>
     <context-param>  
     <param-name>primefaces.THEME</param-name>  
-    <param-value>start</param-value>  
+    <param-value>home</param-value>  
 </context-param>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -25,4 +29,8 @@
     <welcome-file-list>
         <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/VIEWS/LIB_INICIO/pages/error404.xhtml</location>
+    </error-page>
 </web-app>

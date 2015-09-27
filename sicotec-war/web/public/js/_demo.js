@@ -298,9 +298,9 @@
               case 'Color':
                 if(value == 'Light') {
                   addClass(this.sidebar, 'yay-light');
-                  this.sidebarLogo.src = 'assets/_con/images/logo.png';
+                  this.sidebarLogo.src = 'public/images/logo.png';
                 } else {
-                  this.sidebarLogo.src = 'assets/_con/images/logo-white.png';
+                  this.sidebarLogo.src = 'public/images/logo-white.png';
                 }
                 break;
               case 'ShowType':
@@ -333,9 +333,9 @@
                 if(value == 'Dark') {
                   addClass(this.navbar, 'navbar-dark');
 
-                  this.navbarLogo.src = 'assets/_con/images/logo-white.png';
+                  this.navbarLogo.src = 'public/images/logo-white.png';
                 } else {
-                  this.navbarLogo.src = 'assets/_con/images/logo.png';
+                  this.navbarLogo.src = 'public/images/logo.png';
                 }
                 break;
 

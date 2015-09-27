@@ -19,7 +19,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
-
+import Util.Utils;
 /**
  *
  * @author Ricardo
@@ -32,10 +32,16 @@ public class LoginMB implements Serializable{
     UsuarioBO usuarioBO = new UsuarioBO();
     @EJB
     PermisoBO permisoBO = new PermisoBO();
+    Utils ut = new Utils();
     
     private String nombreUsuario;
     private String contraseña;
-    private List<PermisoDTO> listaPermisos;
+    
+    //VARIBLES DE SESSION
+    //VARIABLES EN SESSION
+    private String nombreUsuarioSession;
+    private List<PermisoDTO> listaPermisosSession;
+    
     public LoginMB() {  
     }
     
@@ -57,18 +63,23 @@ public class LoginMB implements Serializable{
         }
         
         if(u.getIdusuario() != null){
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario",u);
             List<PermisoDTO> listaPermisos = permisoBO.getPermisosByRol(u.getIdRol());
-            setListaPermisos(listaPermisos);
+            //DEFINIENDO VARIABLES EN SESSION
+            setListaPermisosSession(listaPermisos);
+            setNombreUsuarioSession(u.getNombre());
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario",u);
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("permisos",listaPermisos);
+            
             try {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
             } catch (Exception ex) {}
         }else{
             setContraseña("");
             RequestContext.getCurrentInstance().update("contra");
-            FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage("¿Olvidastes tu contraseña?", "Ingrese un Usuario/Clave valido"));
+            
+            ut.mostrarNotificacion(RequestContext.getCurrentInstance(),"Ingrese usuario/contraseña valido",4000);
+            //FacesContext context = FacesContext.getCurrentInstance();
+            //context.addMessage(null, new FacesMessage("¿Olvidastes tu contraseña?", "Ingrese un Usuario/Clave valido"));
         }
     }
 
@@ -101,18 +112,31 @@ public class LoginMB implements Serializable{
     }
 
     /**
-     * @return the listaPermisos
+     * @return the nombreUsuarioSession
      */
-    public List<PermisoDTO> getListaPermisos() {
-        return listaPermisos;
+    public String getNombreUsuarioSession() {
+        return nombreUsuarioSession;
     }
 
     /**
-     * @param listaPermisos the listaPermisos to set
+     * @param nombreUsuarioSession the nombreUsuarioSession to set
      */
-    public void setListaPermisos(List<PermisoDTO> listaPermisos) {
-        this.listaPermisos = listaPermisos;
+    public void setNombreUsuarioSession(String nombreUsuarioSession) {
+        this.nombreUsuarioSession = nombreUsuarioSession;
     }
-    
-    
+
+    /**
+     * @return the listaPermisosSession
+     */
+    public List<PermisoDTO> getListaPermisosSession() {
+        return listaPermisosSession;
+    }
+
+    /**
+     * @param listaPermisosSession the listaPermisosSession to set
+     */
+    public void setListaPermisosSession(List<PermisoDTO> listaPermisosSession) {
+        this.listaPermisosSession = listaPermisosSession;
+    }
+  
 }
