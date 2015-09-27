@@ -21,19 +21,19 @@ import org.primefaces.context.RequestContext;
 public class MovimientoMB {
     @EJB
     private MovimientoBO MovimientoBO = new MovimientoBO();
+    
+    private SessionBeanMovimiento sessionBeanMovimiento = new SessionBeanMovimiento();
     Utils ut = new Utils();
     
-    private List<TipomovimientoDTO> listaTipoMovimiento = new ArrayList<TipomovimientoDTO>();
+    
     
     @PostConstruct
     public void init(){
-        setListaTipoMovimiento(MovimientoBO.getAllTipoMovimiento());
-        System.out.println(getListaTipoMovimiento().size());
+        getSessionBeanMovimiento().setListaTipoMovimiento(MovimientoBO.getAllTipoMovimiento());
     }
     
     public void selectRowTable(){
-        System.out.println("APRETO!"); 
-        //ut.mostrarNotificacion(RequestContext.getCurrentInstance(), "holi", 1000);
+        
     }
 
     /**
@@ -51,18 +51,18 @@ public class MovimientoMB {
     }
 
     /**
-     * @return the listaTipoMovimiento
+     * @return the sessionBeanMovimiento
      */
-    public List<TipomovimientoDTO> getListaTipoMovimiento() {
-        return listaTipoMovimiento;
+    public SessionBeanMovimiento getSessionBeanMovimiento() {
+        return sessionBeanMovimiento;
     }
 
     /**
-     * @param listaTipoMovimiento the listaTipoMovimiento to set
+     * @param sessionBeanMovimiento the sessionBeanMovimiento to set
      */
-    public void setListaTipoMovimiento(List<TipomovimientoDTO> listaTipoMovimiento) {
-        this.listaTipoMovimiento = listaTipoMovimiento;
+    public void setSessionBeanMovimiento(SessionBeanMovimiento sessionBeanMovimiento) {
+        this.sessionBeanMovimiento = sessionBeanMovimiento;
     }
-    
-    
+
+
 }

@@ -19,7 +19,7 @@ import org.primefaces.context.RequestContext;
 
 @ManagedBean
 @SessionScoped
-public class tipoitemMB {
+public class tipoitem {
     private String nombre;
     private String codigoItem;
     private String caracteristicas;

@@ -5,6 +5,9 @@
  */
 package controladora.Movimiento;
 
+import dto.TipomovimientoDTO;
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -16,5 +19,20 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class SessionBeanMovimiento {
+    private List<TipomovimientoDTO> listaTipoMovimiento = new ArrayList<TipomovimientoDTO>();
+
+    /**
+     * @return the listaTipoMovimiento
+     */
+    public List<TipomovimientoDTO> getListaTipoMovimiento() {
+        return listaTipoMovimiento;
+    }
+
+    /**
+     * @param listaTipoMovimiento the listaTipoMovimiento to set
+     */
+    public void setListaTipoMovimiento(List<TipomovimientoDTO> listaTipoMovimiento) {
+        this.listaTipoMovimiento = listaTipoMovimiento;
+    }
     
 }

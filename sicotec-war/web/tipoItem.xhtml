@@ -122,33 +122,33 @@
             
             <div class="row">
                 <div class="col s4 input-field">
-                    <p:inputText id="uno" value="#{tipoitemMB.codigoItem}"/>
+                    <p:inputText id="uno" value="#{tipoitem.codigoItem}"/>
                     <label for="uno">Cod. Item</label>
                 </div>
                 <div class="col s4 input-field">
-                    <p:inputText id="dos" value="#{tipoitemMB.nombre}"/>
+                    <p:inputText id="dos" value="#{tipoitem.nombre}"/>
                     <label for="dos">Nombre</label>
                 </div>
                 <div class="col s4 input-field">
-                    <p:inputText id="tres" value="#{tipoitemMB.caracteristicas}"/>
+                    <p:inputText id="tres" value="#{tipoitem.caracteristicas}"/>
                     <label for="tres">Características</label>
                 </div>
                 <div class="col s4 input-field">
-                    <p:inputText id="cuatro" value="#{tipoitemMB.categoria}"/>
+                    <p:inputText id="cuatro" value="#{tipoitem.categoria}"/>
                     <label for="cuatro">Categoría</label>
                 </div>
                 <div class="col s4 input-field">
-                    <p:inputText id="cinco" value="#{tipoitemMB.almacen}"/>
+                    <p:inputText id="cinco" value="#{tipoitem.almacen}"/>
                     <label for="cinco">Almacén</label>
                 </div>
                 <div class="col s4 input-field">
-                    <p:inputText id="seis" value="#{tipoitemMB.fechaRegistro}"/>
+                    <p:inputText id="seis" value="#{tipoitem.fechaRegistro}"/>
                     <label for="seis">Fecha de registro</label>
                 </div>
             </div>
             
             <div class="row">
-                <p:commandButton value="Buscar" actionListener="#{tipoitemMB.guardar()}"></p:commandButton>
+                <p:commandButton value="Buscar" actionListener="#{tipoitem.guardar()}"></p:commandButton>
                 <p:commandButton value="Registrar" ></p:commandButton>
                 <p:commandButton value="Modificar"></p:commandButton>
             </div>

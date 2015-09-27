@@ -120,18 +120,12 @@
           </div>
 
             <p:spacer></p:spacer>
-            <p:dataTable tableStyleClass="table table-hover" value="#{movimientoMB.listaTipoMovimiento}" var="tMov">
+            <p:dataTable tableStyleClass="table table-hover" value="#{movimientoMB.sessionBeanMovimiento.listaTipoMovimiento}" var="tMov">
                 <p:column headerText="ID">
                     <p:outputLabel value="#{tMov.idtipoMovimiento}"/>
                 </p:column>
                 <p:column headerText="Nombre">
                     <p:outputLabel value="#{tMov.nombre}"/>
-                </p:column>
-                <p:column headerText="Correlativo">
-                    <p:outputLabel value="#{tMov.correlativo}"/>
-                </p:column>
-                <p:column headerText="Serie">
-                    <p:outputLabel value="#{tMov.nSerie}"/>
                 </p:column>
             </p:dataTable>
             <p:commandButton actionListener="#{movimientoMB.selectRowTable()}" value="apierta1" />
