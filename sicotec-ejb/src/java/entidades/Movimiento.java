@@ -45,6 +45,14 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Movimiento.findByComentario", query = "SELECT m FROM Movimiento m WHERE m.comentario = :comentario"),
     @NamedQuery(name = "Movimiento.findByEstado", query = "SELECT m FROM Movimiento m WHERE m.estado = :estado")})
 public class Movimiento implements Serializable {
+    @Column(name = "iddocumento")
+    private Integer iddocumento;
+    @Size(max = 45)
+    @Column(name = "nSerie")
+    private String nSerie;
+    @Size(max = 45)
+    @Column(name = "correlativo")
+    private String correlativo;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -197,6 +205,30 @@ public class Movimiento implements Serializable {
     @Override
     public String toString() {
         return "entidades.Movimiento[ idmovimiento=" + idmovimiento + " ]";
+    }
+
+    public Integer getIddocumento() {
+        return iddocumento;
+    }
+
+    public void setIddocumento(Integer iddocumento) {
+        this.iddocumento = iddocumento;
+    }
+
+    public String getNSerie() {
+        return nSerie;
+    }
+
+    public void setNSerie(String nSerie) {
+        this.nSerie = nSerie;
+    }
+
+    public String getCorrelativo() {
+        return correlativo;
+    }
+
+    public void setCorrelativo(String correlativo) {
+        this.correlativo = correlativo;
     }
     
 }
