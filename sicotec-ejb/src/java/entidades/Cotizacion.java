@@ -45,6 +45,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Cotizacion.findByCorrelativo", query = "SELECT c FROM Cotizacion c WHERE c.correlativo = :correlativo"),
     @NamedQuery(name = "Cotizacion.findByIdalmacen", query = "SELECT c FROM Cotizacion c WHERE c.idalmacen = :idalmacen")})
 public class Cotizacion implements Serializable {
+    @Column(name = "idalmacen")
+    private Integer idalmacen;
     @Column(name = "estado")
     private Integer estado;
     private static final long serialVersionUID = 1L;
@@ -66,9 +68,6 @@ public class Cotizacion implements Serializable {
     @Size(max = 45)
     @Column(name = "correlativo")
     private String correlativo;
-    @Size(max = 45)
-    @Column(name = "idalmacen")
-    private String idalmacen;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cotizacion")
     private List<Cotipoitem> cotipoitemList;
     @JoinColumn(name = "idempresa", referencedColumnName = "idempresa")
@@ -131,13 +130,6 @@ public class Cotizacion implements Serializable {
         this.correlativo = correlativo;
     }
 
-    public String getIdalmacen() {
-        return idalmacen;
-    }
-
-    public void setIdalmacen(String idalmacen) {
-        this.idalmacen = idalmacen;
-    }
 
     @XmlTransient
     public List<Cotipoitem> getCotipoitemList() {
@@ -187,6 +179,14 @@ public class Cotizacion implements Serializable {
 
     public void setEstado(Integer estado) {
         this.estado = estado;
+    }
+
+    public Integer getIdalmacen() {
+        return idalmacen;
+    }
+
+    public void setIdalmacen(Integer idalmacen) {
+        this.idalmacen = idalmacen;
     }
     
 }
