@@ -9,6 +9,7 @@ import Util.Utils;
 import bo.DocumentoBO;
 import bo.MovimientoBO;
 import bo.TipoMovimientoBO;
+import dto.MovimientoDTO;
 import dto.TipomovimientoDTO;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,15 @@ public class MovimientoMB {
     }
     
     public void selectRowTable(){
+        
+    }
+    
+    public void verItems(){
+        MovimientoDTO mov = new MovimientoDTO();
+        mov.setIdmovimiento(getSessionBeanMovimiento().getMovimientoSeleccionado().getIdmovimiento());
+    }
+    
+    public void abrirEditMov(){
         
     }
     

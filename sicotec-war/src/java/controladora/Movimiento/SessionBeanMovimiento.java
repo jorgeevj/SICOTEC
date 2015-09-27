@@ -25,6 +25,8 @@ public class SessionBeanMovimiento {
     private List<MovimientoDTO> listaMovimiento = new ArrayList<MovimientoDTO>();
     private List<DocumentoDTO> listaDocumento = new ArrayList<DocumentoDTO>();
     private ArrayList listaEstados = new ArrayList();
+    
+    private MovimientoDTO movimientoSeleccionado = new MovimientoDTO();
     /**
      * @return the listaTipoMovimiento
      */
@@ -79,6 +81,20 @@ public class SessionBeanMovimiento {
      */
     public void setListaDocumento(List<DocumentoDTO> listaDocumento) {
         this.listaDocumento = listaDocumento;
+    }
+
+    /**
+     * @return the movimientoSeleccionado
+     */
+    public MovimientoDTO getMovimientoSeleccionado() {
+        return movimientoSeleccionado;
+    }
+
+    /**
+     * @param movimientoSeleccionado the movimientoSeleccionado to set
+     */
+    public void setMovimientoSeleccionado(MovimientoDTO movimientoSeleccionado) {
+        this.movimientoSeleccionado = movimientoSeleccionado;
     }
     
 }
